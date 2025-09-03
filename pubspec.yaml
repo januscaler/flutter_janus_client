@@ -17,7 +17,9 @@ dependencies:
     sdk: flutter
   flutter:
     sdk: flutter
-  flutter_webrtc: ^0.14.2 # Updated to latest compatible version
+  flutter_webrtc:
+    git:
+      url: https://github.com/januscaler/flutter-webrtc.git
   path_provider: ^2.1.5
   http: ^1.4.0
   web_socket_channel: ^3.0.3
