@@ -1,12 +1,17 @@
+## 2.3.14
+- Added `getBitrate()` method for real-time bitrate monitoring (similar to janus.js getBitrate function)
+- Support for bitrate monitoring with and without mid parameter
+- Independent bitrate history tracking per stream
 ## 2.3.13
 - downgrade to flutter_webrtc to version: 0.14.2 since 1.0.0 has issues with android seemingly unstable see [crashing on android](https://github.com/flutter-webrtc/flutter-webrtc/issues/1906)
 ## 2.3.12
 - upgrade flutter_webrtc to version: 1.0.0
+
 ## 2.3.11
 - feature: media constraints changes
 ## 2.3.10
 - bugfix: change type of id to dynamic instead of int to support string ids
-- update:url for org 
+- update:url for org
 
 ## 2.3.9
 - bugfix: websocket session send refactored to use Completer instead of error prone firstWhere
@@ -36,7 +41,7 @@
 - dependency upgrade and improvements
 ## 2.3.0
 - breaking changes in createOffer and createAnswer (removed dead code prepareTransReceiver)
-- fixed audio and video mute events not working due to #120 raised by @liemfs 
+- fixed audio and video mute events not working due to #120 raised by @liemfs
 
 ## 2.2.15
 - added support for simulcasting in `initMediaDevice`

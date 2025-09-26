@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:janus_client/janus_client.dart';
@@ -25,6 +26,7 @@ class _StreamingState extends State<TypedStreamingV2> {
   late StateSetter _setState;
   bool isPlaying = true;
   bool isMuted = false;
+  Timer? _bitrateTimer;
 
   showStreamSelectionDialog() async {
     return showDialog(
@@ -117,6 +119,26 @@ class _StreamingState extends State<TypedStreamingV2> {
         await plugin.startStream();
         setState(() {
           _loader = false;
+        });
+
+        // Monitor bitrate every 5 seconds
+        _bitrateTimer = Timer.periodic(Duration(seconds: 5), (timer) async {
+          if (!mounted) {
+            timer.cancel();
+            return;
+          }
+
+          // Get bitrate for the first video stream
+          final bitrate = await plugin.getBitrate();
+          if (bitrate != null) {
+            print('Current bitrate: $bitrate');
+          }
+
+          // Get bitrate for specific mid (if you know the mid)
+          // final specificBitrate = await plugin.getBitrate('v1');
+          // if (specificBitrate != null) {
+          //   print('Bitrate for mid v1: $specificBitrate');
+          // }
         });
       }
       if (data is StreamingPluginStoppingEvent) {
@@ -271,6 +293,7 @@ class _StreamingState extends State<TypedStreamingV2> {
   void dispose() async {
     // TODO: implement dispose
     super.dispose();
+    _bitrateTimer?.cancel();
     destroy();
   }
 }
