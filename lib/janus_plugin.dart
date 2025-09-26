@@ -56,6 +56,10 @@ class JanusPlugin {
   StreamSubscription? _wsStreamSubscription;
   late bool pollingActive;
 
+  // Bitrate calculation variables - separate history per mid
+  Map<String, int> _lastBytesReceivedMap = {};
+  Map<String, int> _lastTimestampMap = {};
+
   RTCPeerConnection? get peerConnection {
     return webRTCHandle?.peerConnection;
   }
@@ -596,6 +600,68 @@ class JanusPlugin {
       await webRTCHandle!.peerConnection!.setLocalDescription(answer);
       return answer;
     }
+  }
+
+  /// Gets a verbose description of the currently received video stream bitrate
+  /// [mid] optional mid to specify the stream, first video stream if missing
+  /// Similar to janus.js getBitrate() function
+  Future<String?> getBitrate([String? mid]) async {
+    if (webRTCHandle?.peerConnection == null) {
+      return null;
+    }
+
+    final stats = await webRTCHandle!.peerConnection!.getStats();
+    final nowMillis = DateTime.now().millisecondsSinceEpoch;
+
+    String? result;
+
+    for (var report in stats) {
+      // Look for the specific mid or first video stream
+      bool isTargetStream = false;
+
+      if (mid != null) {
+        // Look for specific mid
+        if (report.values['mid'] == mid &&
+            report.type == 'inbound-rtp' &&
+            report.values['kind'] == 'video') {
+          isTargetStream = true;
+        }
+      } else {
+        // Look for first video stream
+        if (report.type == 'inbound-rtp' &&
+            report.values['kind'] == 'video') {
+          isTargetStream = true;
+        }
+      }
+
+      if (isTargetStream && report.values['bytesReceived'] != null) {
+        final currentBytesReceived = report.values['bytesReceived'] as int;
+
+        // Determine history key (use "default" if mid is null)
+        final historyKey = mid ?? "default";
+
+        // Calculate bitrate if we have previous values
+        if (_lastBytesReceivedMap[historyKey] != null && _lastTimestampMap[historyKey] != null) {
+          final bytesDiff = currentBytesReceived - _lastBytesReceivedMap[historyKey]!;
+          final timeDiff = (nowMillis - _lastTimestampMap[historyKey]!) / 1000.0;
+
+          if (timeDiff > 0 && bytesDiff >= 0) {
+            final bitsDiff = bytesDiff * 8;
+            final bitsPerSecond = bitsDiff / timeDiff;
+            final kbps = (bitsPerSecond / 1000).round();
+
+            result = "$kbps kbps";
+          }
+        }
+
+        // Store current values for next calculation
+        _lastBytesReceivedMap[historyKey] = currentBytesReceived;
+        _lastTimestampMap[historyKey] = nowMillis;
+        break; // Found our target stream
+      }
+    }
+
+    return result;
   }
 
   /// Send text message on existing text room using data channel with same label as specified during initDataChannel() method call.
