@@ -3,32 +3,28 @@ on:
   push:
     branches:
       - demo_v2
+  workflow_dispatch:  # This will allow the workflow to be triggered manually
+
 jobs:
-  build:
-    name: Build Web
-    env:
-      my_secret: ${{secrets.commit_secret}}
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the source code
       - uses: actions/checkout@v3
+
+      # Set up Flutter
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      - run: flutter config --enable-web
-      - run: cd example && flutter pub get && flutter build web --release  --base-href "/flutter_janus_client/" && dart doc .
-      - run: |
-          cp -r example/doc example/build/web
-          cd example/build/web
-          git init
-          # type configurations: your user.email and user.name followed lines 
-          # git config --global user.email your_email 
-          # git config --global user.name your_name 
-          git config --global user.email shivanshtalwar0@gmail.com
-          git config --global user.name shivanshtalwar0
-          git status
-          # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-          git remote add origin https://${{secrets.commit_secret}}@github.com/flutterjanus/flutter_janus_client.git
-          git checkout -b gh-pages
-          git add --all
-          git commit -m "update"
-          git push origin gh-pages -f
+          channel: stable
+          
+      # Enable Flutter web support
+      - run: cd example && flutter pub get && flutter build web --release --base-href "/flutter_janus_client/"
+  
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./example/build/web

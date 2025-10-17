@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:janus_client/janus_client.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:janus_client_example/conf.dart';
+import '../conf.dart';
 
 class TypedSipExample extends StatefulWidget {
   @override
@@ -208,7 +208,7 @@ class _SipExampleState extends State<TypedSipExample> {
                           statusMessage = "";
                         });
                       },
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                      style: ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.red)),
                       child: Text("Hangup"),
                     ),
                   )
@@ -303,7 +303,7 @@ class _SipExampleState extends State<TypedSipExample> {
           });
         }
 
-        await stopAllTracksAndDispose(localStream);
+        await stopAllTracks(localStream);
         var dialog;
         dialog = await showDialog(
             context: context,
@@ -332,7 +332,7 @@ class _SipExampleState extends State<TypedSipExample> {
                 actions: [
                   TextButton(
                       onPressed: () async {
-                        await stopAllTracksAndDispose(localStream);
+                        await stopAllTracks(localStream);
                         Navigator.of(context).pop(dialog);
                         if (isIncomingCall) {
                           Navigator.of(context).pop(dialog);
@@ -479,7 +479,7 @@ class _SipExampleState extends State<TypedSipExample> {
   }
 
   Future<void> stopTracks() async {
-    await stopAllTracksAndDispose(remoteVideoStream);
+    await stopAllTracks(remoteVideoStream);
   }
 
   Future<void> cleanUpWebRTCStuff() async {

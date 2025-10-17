@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:janus_client/janus_client.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'package:janus_client_example/conf.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:janus_client/janus_client.dart';
+
+import '../conf.dart';
 
 class TypedVideoCallV2Example extends StatefulWidget {
   @override
@@ -255,8 +256,8 @@ class _VideoCallV2ExampleState extends State<TypedVideoCallV2Example> {
   }
 
   destroy() async {
-    await stopAllTracksAndDispose(publishVideo.webRTCHandle?.localStream);
-    await stopAllTracksAndDispose(remoteVideoStream);
+    await stopAllTracks(publishVideo.webRTCHandle?.localStream);
+    await stopAllTracks(remoteVideoStream);
     publishVideo.dispose();
     session.dispose();
     Navigator.of(context).pop();
@@ -317,8 +318,8 @@ class _VideoCallV2ExampleState extends State<TypedVideoCallV2Example> {
               // This bool value toggles the switch.
               value: speakerOn,
               thumbColor: CupertinoColors.systemBlue,
-              trackColor: CupertinoColors.systemRed.withOpacity(0.14),
-              activeColor: CupertinoColors.systemRed.withOpacity(0.64),
+              inactiveTrackColor: CupertinoColors.systemRed.withOpacity(0.14),
+              activeTrackColor: CupertinoColors.systemRed.withOpacity(0.64),
               onChanged: (bool? value) async {
                 // This is called when the user toggles the switch.
                 setState(() {

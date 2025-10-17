@@ -242,8 +242,10 @@ randomString(
   return randomString + Timeline.now.toString();
 }
 
-Future<void> stopAllTracksAndDispose(MediaStream? stream) async {
-  await stream?.dispose();
+Future<void> stopAllTracks(MediaStream? stream) async {
+  for (MediaStreamTrack track in stream?.getTracks() ?? []) {
+    await track.stop();
+  }
 }
 
 Future<String> getCameraDeviceId(front) async {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:janus_client/janus_client.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'dart:async';
-import 'package:janus_client_example/conf.dart';
+import '../conf.dart';
 import 'package:logging/logging.dart';
 
 import '../util.dart';
@@ -424,7 +424,9 @@ class _VideoRoomState extends State<GoogleMeet> {
     setState(() {
       screenSharing = false;
     });
-    await screenPlugin?.unpublish();
+    (localScreenSharingRenderer.mediaStream?.getTracks())?.forEach((track){
+      track.stop();
+    });
     StreamRenderer? rendererRemoved;
     setState(() {
       rendererRemoved = videoState.streamsToBeRendered.remove(localScreenSharingRenderer.id);

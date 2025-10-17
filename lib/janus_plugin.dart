@@ -58,6 +58,10 @@ class JanusPlugin {
   StreamSubscription? _wsStreamSubscription;
   late bool pollingActive;
 
+  // Bitrate calculation variables - separate history per mid
+  Map<String, int> _lastBytesReceivedMap = {};
+  Map<String, int> _lastTimestampMap = {};
+
   RTCPeerConnection? get peerConnection {
     return webRTCHandle?.peerConnection;
   }
@@ -303,13 +307,9 @@ class JanusPlugin {
       if (_context._apiSecret != null) {
         queryParameters["apisecret"] = _context._apiSecret!;
       }
-      var response = (await http.get(Uri.https(
-          extractDomainFromUrl(_transport!.url!),
-          "api/" + _session!.sessionId.toString(),
-          queryParameters)));
+      var response = (await http.get(Uri.https(extractDomainFromUrl(_transport!.url!), "janus/" + _session!.sessionId.toString(), queryParameters)));
       if (response.statusCode != 200 || response.body.isEmpty) {
-        var errorMessage =
-            "polling is failed from janus with error code : ${response.statusCode} , header : ${response.headers}";
+        var errorMessage = "polling is failed from janus with error code : ${response.statusCode} , header : ${response.headers}";
         print(response.body);
         print(response.statusCode);
         print(errorMessage);
@@ -360,36 +360,49 @@ class JanusPlugin {
     }
   }
 
-  Future<void> hangup() async {
-    _cancelPollingTimer();
-    await _disposeMediaStreams();
-  }
-
-  Future<void> _disposeMediaStreams(
-      {ignoreRemote = false, video = true, audio = true}) async {
-    _context._logger
-        .finest('disposing localStream and remoteStream if it already exists');
-    if (webRTCHandle!.localStream != null) {
+  Future<void> _disposeMediaStreams({ignoreRemote = false, video = true, audio = true}) async {
+    _context._logger.finest('disposing localStream and remoteStream if it already exists');
+    if (webRTCHandle?.localStream != null) {
       if (audio) {
         webRTCHandle?.localStream?.getAudioTracks().forEach((element) async {
+          _context._logger.finest('stoping localStream => audio track ${element.toString()}');
           await element.stop();
         });
       }
       if (video) {
         webRTCHandle?.localStream?.getVideoTracks().forEach((element) async {
+          _context._logger.finest('stoping localStream => video track ${element.toString()}');
           await element.stop();
         });
       }
-      if (audio && video) {
-        webRTCHandle?.localStream?.dispose();
+      if (audio || video) {
+        try {
+          _context._logger.finest('disposing webRTCHandle?.localStream');
+          await webRTCHandle?.localStream?.dispose();
+        } catch (e) {
+          _context._logger.severe('failed to dispose webRTCHandle?.localStream with error $e');
+        }
       }
+      webRTCHandle?.localStream = null;
     }
-    if (webRTCHandle!.remoteStream != null && !ignoreRemote) {
+    if (webRTCHandle?.remoteStream != null && !ignoreRemote) {
       webRTCHandle?.remoteStream?.getTracks().forEach((element) async {
+        _context._logger.finest('stoping remoteStream => ${element.toString()}');
         await element.stop();
       });
-      webRTCHandle?.remoteStream?.dispose();
+      try {
+        _context._logger.finest('disposing webRTCHandle?.remoteStream');
+        await webRTCHandle?.remoteStream?.dispose();
+      } catch (e) {
+        _context._logger.severe('failed to dispose webRTCHandle?.remoteStream with error $e');
+      }
+      webRTCHandle?.remoteStream = null;
     }
+  }
+
+  Future<void> hangup() async {
+    _cancelPollingTimer();
+    await _disposeMediaStreams();
   }
 
   /// This function takes care of cleaning up all the internal stream controller and timers used to make janus_client compatible with streams and polling support
@@ -407,15 +420,17 @@ class JanusPlugin {
     _onDataStreamController?.close();
     _renegotiationNeededController?.close();
     _wsStreamSubscription?.cancel();
-    await stopAllTracksAndDispose(webRTCHandle?.localStream);
-    (await webRTCHandle?.peerConnection?.getTransceivers())
-        ?.forEach((element) async {
+    await stopAllTracks(webRTCHandle?.localStream);
+    (await webRTCHandle?.peerConnection?.getTransceivers())?.forEach((element) async {
       await element.stop();
     });
     await webRTCHandle?.peerConnection?.close();
     await webRTCHandle?.remoteStream?.dispose();
     await webRTCHandle?.localStream?.dispose();
     await webRTCHandle?.peerConnection?.dispose();
+    webRTCHandle?.localStream = null;
+    webRTCHandle?.remoteStream = null;
+    webRTCHandle?.peerConnection = null;
   }
 
   /// this method Initialize data channel on handle's internal peer connection object.
@@ -498,6 +513,7 @@ class JanusPlugin {
   ///Helper method that generates MediaStream from your device camera that will be automatically added to peer connection instance internally used by janus client
   ///
   /// [useDisplayMediaDevices] : It can be used to capture your device screen.<br>
+  /// [disableDevicePrediction] : Disable device prediction when video or audio is not specified or unknown.<br>
   /// [mediaConstraints] : Using this map you can specify media contraits such as resolution and fps etc.<br>
   /// [simulcastSendEncodings] : This list is used to specify encoding for simulcasting or (svc if room codec is vp9)<br>
   /// [transceiverDirection] : It will be ignored if you don't specify [simulcastSendEncodings]
@@ -506,29 +522,35 @@ class JanusPlugin {
   Future<MediaStream?> initializeMediaDevices({
     Map<String, dynamic>? mediaConstraints,
     bool useDisplayMediaDevices = false,
+    bool disableDevicePrediction = false,
     TransceiverDirection? transceiverDirection = TransceiverDirection.SendOnly,
     List<RTCRtpEncoding>? simulcastSendEncodings,
   }) async {
     await _disposeMediaStreams(ignoreRemote: true);
-    List<MediaDeviceInfo> videoDevices = await getVideoInputDevices();
-    List<MediaDeviceInfo> audioDevices = await getAudioInputDevices();
-    if (videoDevices.isEmpty &&
-        audioDevices.isEmpty &&
-        !useDisplayMediaDevices) {
-      throw Exception("No device found for media generation");
-    }
-    if (mediaConstraints == null) {
-      if (videoDevices.isEmpty && audioDevices.isNotEmpty) {
-        mediaConstraints = {"audio": true, "video": false};
-      } else if (videoDevices.length == 1 && audioDevices.isNotEmpty) {
-        mediaConstraints = {"audio": true, 'video': true};
-      } else {
-        mediaConstraints = {
-          "audio": audioDevices.length > 0,
-          'video': {
-            'deviceId': {'exact': videoDevices.first.deviceId},
-          },
-        };
+    if (!disableDevicePrediction) {
+      List<MediaDeviceInfo> videoDevices = await getVideoInputDevices();
+      List<MediaDeviceInfo> audioDevices = await getAudioInputDevices();
+      if (videoDevices.isEmpty && audioDevices.isEmpty &&
+          !useDisplayMediaDevices) {
+        throw Exception("No device found for media generation");
+      }
+      if (mediaConstraints == null) {
+        if (videoDevices.isEmpty && audioDevices.isNotEmpty) {
+          mediaConstraints = {"audio": true, "video": false};
+        } else if (videoDevices.length == 1 && audioDevices.isNotEmpty) {
+          mediaConstraints = {"audio": true, 'video': true};
+        } else {
+          mediaConstraints = {
+            "audio": audioDevices.length > 0,
+            'video': {
+              'deviceId': {'exact': videoDevices.first.deviceId},
+            },
+          };
+        }
+      }
+    } else {
+      if (mediaConstraints == null) {
+        throw Exception("No media constraints set");
       }
     }
     _context._logger.fine(mediaConstraints);
@@ -655,6 +677,68 @@ class JanusPlugin {
       await webRTCHandle!.peerConnection!.setLocalDescription(answer);
       return answer;
     }
+  }
+
+  /// Gets a verbose description of the currently received video stream bitrate
+  /// [mid] optional mid to specify the stream, first video stream if missing
+  /// Similar to janus.js getBitrate() function
+  Future<String?> getBitrate([String? mid]) async {
+    if (webRTCHandle?.peerConnection == null) {
+      return null;
+    }
+
+    final stats = await webRTCHandle!.peerConnection!.getStats();
+    final nowMillis = DateTime.now().millisecondsSinceEpoch;
+
+    String? result;
+
+    for (var report in stats) {
+      // Look for the specific mid or first video stream
+      bool isTargetStream = false;
+
+      if (mid != null) {
+        // Look for specific mid
+        if (report.values['mid'] == mid &&
+            report.type == 'inbound-rtp' &&
+            report.values['kind'] == 'video') {
+          isTargetStream = true;
+        }
+      } else {
+        // Look for first video stream
+        if (report.type == 'inbound-rtp' &&
+            report.values['kind'] == 'video') {
+          isTargetStream = true;
+        }
+      }
+
+      if (isTargetStream && report.values['bytesReceived'] != null) {
+        final currentBytesReceived = report.values['bytesReceived'] as int;
+
+        // Determine history key (use "default" if mid is null)
+        final historyKey = mid ?? "default";
+
+        // Calculate bitrate if we have previous values
+        if (_lastBytesReceivedMap[historyKey] != null && _lastTimestampMap[historyKey] != null) {
+          final bytesDiff = currentBytesReceived - _lastBytesReceivedMap[historyKey]!;
+          final timeDiff = (nowMillis - _lastTimestampMap[historyKey]!) / 1000.0;
+
+          if (timeDiff > 0 && bytesDiff >= 0) {
+            final bitsDiff = bytesDiff * 8;
+            final bitsPerSecond = bitsDiff / timeDiff;
+            final kbps = (bitsPerSecond / 1000).round();
+
+            result = "$kbps kbps";
+          }
+        }
+
+        // Store current values for next calculation
+        _lastBytesReceivedMap[historyKey] = currentBytesReceived;
+        _lastTimestampMap[historyKey] = nowMillis;
+        break; // Found our target stream
+      }
+    }
+
+    return result;
   }
 
   /// Send text message on existing text room using data channel with same label as specified during initDataChannel() method call.

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:janus_client/janus_client.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'dart:async';
-import 'package:janus_client_example/conf.dart';
+import '../conf.dart';
 
 class TypedAudioRoomV2 extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
   }
 
   Future<void> initPlatformState() async {
-    ws = WebSocketJanusTransport(url: servermap['servercheap']);
+    ws = WebSocketJanusTransport(url: servermap['janus_ws']);
     client = JanusClient(
         withCredentials: true,
         isUnifiedPlan: true,
@@ -178,8 +178,8 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
                 // This bool value toggles the switch.
                 value: speakerOn,
                 thumbColor: CupertinoColors.systemBlue,
-                trackColor: CupertinoColors.systemRed.withOpacity(0.14),
-                activeColor: CupertinoColors.systemRed.withOpacity(0.64),
+                inactiveTrackColor: CupertinoColors.systemRed.withOpacity(0.14),
+                activeTrackColor: CupertinoColors.systemRed.withOpacity(0.64),
                 onChanged: (bool? value) async {
                   // This is called when the user toggles the switch.
                   setState(() {

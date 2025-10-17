@@ -28,7 +28,7 @@ class StreamingItem {
   List<Media> media;
 
   StreamingItem copyWith({
-    int? id,
+    dynamic id,
     String? type,
     String? description,
     String? metadata,
@@ -112,7 +112,8 @@ class RemoteStream {
   dynamic mid;
 
   Future<void> dispose() async {
-    await stopAllTracksAndDispose(video);
+    await stopAllTracks(video);
+    await video.dispose();
     videoRenderer.srcObject = null;
     await videoRenderer.dispose();
   }

@@ -1,0 +1,55 @@
+name: Flutter CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Flutter SDK
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.4" # Includes Dart 3.6.0 for pubspec.yaml compatibility
+          channel: "stable"
+          cache: true
+          cache-key: flutter-3.35.4-v3 # Unique key to avoid stale cache
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      # Verify Flutter and Dart installation
+      - name: Verify Flutter installation
+        run: |
+          echo "PATH: $PATH"
+          echo "Checking Flutter installation..."
+          flutter --version
+          dart --version
+          echo "Flutter doctor:"
+          flutter doctor -v
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+        
+      # Check for publish warnings (only on release)
+      - name: Check publish warnings
+        if: github.event_name == 'release'
+        run: dart pub publish --dry-run
+
+      # Publish package to pub.dev (only on release)
+      - name: Publish package
+        if: github.event_name == 'release'
+        uses: k-paxian/dart-package-publisher@v1.5.1
+        with:
+          accessToken: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+          flutter: true
+          skipTests: true
