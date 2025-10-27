@@ -1,3 +1,6 @@
+## 2.3.15
+- Upgraded flutter_webrtc to version 1.2.0
+- Added support for H.265/HEVC video codec
 ## 2.3.14
 - Added `getBitrate()` method for real-time bitrate monitoring (similar to janus.js getBitrate function)
 - Support for bitrate monitoring with and without mid parameter
