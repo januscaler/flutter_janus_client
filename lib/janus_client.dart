@@ -74,6 +74,8 @@ part './interfaces/video_call/events/video_call_incoming_call_event.dart';
 
 part './interfaces/video_call/events/video_call_registered_event.dart';
 
+part './interfaces/video_call/events/video_call_registered_list_event.dart';
+
 part './interfaces/streaming/create_media_item.dart';
 
 part './interfaces/streaming/streaming_mount.dart';
@@ -150,14 +152,14 @@ class JanusClient {
 
   Map get _apiMap => _withCredentials
       ? _apiSecret != null
-          ? {"apisecret": _apiSecret}
-          : {}
+            ? {"apisecret": _apiSecret}
+            : {}
       : {};
 
   Map get _tokenMap => _withCredentials
       ? _token != null
-          ? {"token": _token}
-          : {}
+            ? {"token": _token}
+            : {}
       : {};
 
   /// JanusClient
@@ -165,23 +167,26 @@ class JanusClient {
   /// setting usePlanB forces creation of peer connection with plan-b sdp semantics,
   /// and would cause isUnifiedPlan to have no effect on sdpSemantics config
   /// By default roomId should be numeric in nature although if you have configured [stringIds] to true for room or janus, then you can have non-numeric roomIds.
-  JanusClient(
-      {required JanusTransport transport,
-      List<RTCIceServer>? iceServers,
-      int refreshInterval = 50,
-      String? apiSecret,
-      bool isUnifiedPlan = true,
-      String? token,
-      bool? stringIds = false,
-      /// if you provide your own logger you will be responsible for managing all logging aspects and properties like log level and printing logs
-      Logger? logger,
-      /// forces creation of peer connection with plan-b sdb semantics
-      @Deprecated('set this option to true if you using legacy janus plugins with no unified-plan support only.') bool usePlanB = false,
-      Duration? pollingInterval,
-      String loggerName = "JanusClient",
-      Level loggerLevel = Level.ALL,
-      int maxEvent = 10,
-      bool withCredentials = false}) {
+  JanusClient({
+    required JanusTransport transport,
+    List<RTCIceServer>? iceServers,
+    int refreshInterval = 50,
+    String? apiSecret,
+    bool isUnifiedPlan = true,
+    String? token,
+    bool? stringIds = false,
+
+    /// if you provide your own logger you will be responsible for managing all logging aspects and properties like log level and printing logs
+    Logger? logger,
+
+    /// forces creation of peer connection with plan-b sdb semantics
+    @Deprecated('set this option to true if you using legacy janus plugins with no unified-plan support only.') bool usePlanB = false,
+    Duration? pollingInterval,
+    String loggerName = "JanusClient",
+    Level loggerLevel = Level.ALL,
+    int maxEvent = 10,
+    bool withCredentials = false,
+  }) {
     _stringIds = stringIds;
     _transport = transport;
     _isUnifiedPlan = isUnifiedPlan;

@@ -1,10 +1,7 @@
 part of janus_client;
 
 class VideoCallEvent {
-  VideoCallEvent({
-    this.videocall,
-    this.result,
-  });
+  VideoCallEvent({this.videocall, this.result});
 
   VideoCallEvent.fromJson(dynamic json) {
     videocall = json['videocall'];
@@ -24,22 +21,22 @@ class VideoCallEvent {
 }
 
 class Result {
-  Result({
-    this.event,
-    this.username,
-  });
+  Result({this.event, this.username, this.list});
 
   Result.fromJson(dynamic json) {
     event = json['event'];
     username = json['username'];
+    list = List<String>.from(json['list'] ?? []);
   }
   String? event;
   String? username;
+  List<String>? list;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['event'] = event;
     map['username'] = username;
+    map['list'] = list;
     return map;
   }
 }
