@@ -3,7 +3,7 @@
 
 [![pub package](https://img.shields.io/pub/v/janus_client.svg)](https://pub.dartlang.org/packages/janus_client)[![Gitter](https://badges.gitter.im/flutter_janus_client/Lobby.svg)](https://gitter.im/flutter_janus_client/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 It is a feature rich flutter package, which offers all webrtc operations supported by [Janus: the general purpose WebRTC server](https://janus.conf.meetecho.com/),
@@ -102,6 +102,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Creiger"><img src="https://avatars.githubusercontent.com/u/14278509?v=4?s=100" width="100px;" alt="Lukas Hronec"/><br /><sub><b>Lukas Hronec</b></sub></a><br /><a href="https://github.com/januscaler/flutter_janus_client/commits?author=Creiger" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dev-satoshi"><img src="https://avatars.githubusercontent.com/u/102169197?v=4?s=100" width="100px;" alt="Satoshi"/><br /><sub><b>Satoshi</b></sub></a><br /><a href="https://github.com/januscaler/flutter_janus_client/commits?author=dev-satoshi" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/emekalites"><img src="https://avatars.githubusercontent.com/u/6467687?v=4?s=100" width="100px;" alt="Chukwuemeka Ihedoro"/><br /><sub><b>Chukwuemeka Ihedoro</b></sub></a><br /><a href="https://github.com/januscaler/flutter_janus_client/commits?author=emekalites" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
