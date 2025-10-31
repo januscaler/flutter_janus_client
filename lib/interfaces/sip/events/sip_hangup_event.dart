@@ -14,7 +14,12 @@ class SipHangupEvent {
   String? reasonHeaderProtocol;
   String? reasonHeaderCause;
 
-  SipHangupEvent({this.event, this.code, this.reason, this.reasonHeaderProtocol, this.reasonHeaderCause});
+  SipHangupEvent(
+      {this.event,
+      this.code,
+      this.reason,
+      this.reasonHeaderProtocol,
+      this.reasonHeaderCause});
 
   SipHangupEvent.fromJson(Map<String, dynamic> json) {
     this.event = json["event"];

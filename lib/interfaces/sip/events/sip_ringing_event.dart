@@ -10,7 +10,9 @@ class SipRingingEvent {
   SipRingingEvent.fromJson(Map<String, dynamic> json) {
     this.sip = json["sip"];
     this.callId = json["call_id"];
-    this.result = json["result"] == null ? null : SipRingingEventResult.fromJson(json["result"]);
+    this.result = json["result"] == null
+        ? null
+        : SipRingingEventResult.fromJson(json["result"]);
   }
 
   Map<String, dynamic> toJson() {

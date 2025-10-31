@@ -9,8 +9,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Janus Client Menu")),
+        appBar: AppBar(title: Text("Janus Client Menu")),
         body: SafeArea(
           child: SingleChildScrollView(
             child: DefaultTextStyle(
@@ -20,7 +19,12 @@ class _HomeState extends State<Home> {
                 children: [
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Google meet"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Google meet"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/google-meet");
@@ -28,7 +32,12 @@ class _HomeState extends State<Home> {
                   ),
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Typed streaming Unified"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Typed streaming Unified"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/typed_streaming");
@@ -36,7 +45,12 @@ class _HomeState extends State<Home> {
                   ),
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Typed Video Call Unified"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Typed Video Call Unified"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/typed_video_call");
@@ -44,7 +58,12 @@ class _HomeState extends State<Home> {
                   ),
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Typed Audio Bridge Unified"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Typed Audio Bridge Unified"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/typed_audio_bridge");
@@ -52,7 +71,12 @@ class _HomeState extends State<Home> {
                   ),
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Typed Text Room"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Typed Text Room"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/typed_text_room");
@@ -60,7 +84,12 @@ class _HomeState extends State<Home> {
                   ),
                   ListTile(
                     title: Text.rich(
-                      TextSpan(children: [TextSpan(text: "Typed Sip Example"), TextSpan(text: "  New", style: TextStyle(color: Colors.green))]),
+                      TextSpan(children: [
+                        TextSpan(text: "Typed Sip Example"),
+                        TextSpan(
+                            text: "  New",
+                            style: TextStyle(color: Colors.green))
+                      ]),
                     ),
                     onTap: () {
                       Navigator.of(context).pushNamed("/typed_sip");

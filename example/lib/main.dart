@@ -11,13 +11,29 @@ void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     theme: ThemeData(
-        colorScheme: ColorScheme.light(surface: Colors.white, primary: Colors.black, secondary: Colors.black, onPrimary: Colors.white, onSecondary: Colors.white),
-        listTileTheme: ListTileThemeData(titleTextStyle: TextStyle(color: Colors.black)),
-        appBarTheme: AppBarTheme(titleTextStyle: TextStyle(color: Colors.white), backgroundColor: Colors.purple)),
+        colorScheme: ColorScheme.light(
+            surface: Colors.white,
+            primary: Colors.black,
+            secondary: Colors.black,
+            onPrimary: Colors.white,
+            onSecondary: Colors.white),
+        listTileTheme:
+            ListTileThemeData(titleTextStyle: TextStyle(color: Colors.black)),
+        appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(color: Colors.white),
+            backgroundColor: Colors.purple)),
     darkTheme: ThemeData(
-        colorScheme: ColorScheme.dark(surface: Colors.black, primary: Colors.white, secondary: Colors.white, onPrimary: Colors.black, onSecondary: Colors.black),
-        listTileTheme: ListTileThemeData(titleTextStyle: TextStyle(color: Colors.white)),
-        appBarTheme: AppBarTheme(titleTextStyle: TextStyle(color: Colors.white), backgroundColor: Colors.grey)),
+        colorScheme: ColorScheme.dark(
+            surface: Colors.black,
+            primary: Colors.white,
+            secondary: Colors.white,
+            onPrimary: Colors.black,
+            onSecondary: Colors.black),
+        listTileTheme:
+            ListTileThemeData(titleTextStyle: TextStyle(color: Colors.white)),
+        appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(color: Colors.white),
+            backgroundColor: Colors.grey)),
     themeMode: ThemeMode.system,
     debugShowCheckedModeBanner: false,
     routes: {

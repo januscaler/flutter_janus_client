@@ -6,9 +6,12 @@ import 'dart:convert';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:janus_client/janus_client.dart';
 
-List<StreamingItem> streamingItemFromMap(String str) => List<StreamingItem>.from(json.decode(str).map((x) => StreamingItem.fromMap(x)));
+List<StreamingItem> streamingItemFromMap(String str) =>
+    List<StreamingItem>.from(
+        json.decode(str).map((x) => StreamingItem.fromMap(x)));
 
-String streamingItemToMap(List<StreamingItem> data) => json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
+String streamingItemToMap(List<StreamingItem> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class StreamingItem {
   StreamingItem({
@@ -50,7 +53,9 @@ class StreamingItem {
         description: json["description"],
         metadata: json["metadata"],
         enabled: json["enabled"],
-        media: json["media"] == null ? [] : (json["media"] as List).map((x) => Media.fromMap(x)).toList(),
+        media: json["media"] == null
+            ? []
+            : (json["media"] as List).map((x) => Media.fromMap(x)).toList(),
       );
 
   Map<String, dynamic> toMap() => {

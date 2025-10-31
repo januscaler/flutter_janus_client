@@ -10,7 +10,9 @@ class SipIncomingCallEvent {
   SipIncomingCallEvent.fromJson(Map<String, dynamic> json) {
     this.sip = json["sip"];
     this.callId = json["call_id"];
-    this.result = json["result"] == null ? null : SipIncomingCallEventResult.fromJson(json["result"]);
+    this.result = json["result"] == null
+        ? null
+        : SipIncomingCallEventResult.fromJson(json["result"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -32,7 +34,15 @@ class SipIncomingCallEventResult {
   String? srtp;
   String? headers;
 
-  SipIncomingCallEventResult({this.event, this.username, this.displayname, this.callee, this.referredBy, this.replaces, this.srtp, this.headers});
+  SipIncomingCallEventResult(
+      {this.event,
+      this.username,
+      this.displayname,
+      this.callee,
+      this.referredBy,
+      this.replaces,
+      this.srtp,
+      this.headers});
 
   SipIncomingCallEventResult.fromJson(Map<String, dynamic> json) {
     this.event = json["event"];

@@ -30,7 +30,9 @@ class RestJanusTransport extends JanusTransport {
       suffixUrl = suffixUrl + "/$sessionId/$handleId";
     }
     try {
-      var response = (await http.post(Uri.parse(url! + suffixUrl), body: stringify(body))).body;
+      var response =
+          (await http.post(Uri.parse(url! + suffixUrl), body: stringify(body)))
+              .body;
       return parse(response);
     } on JsonCyclicError {
       return null;
@@ -123,7 +125,8 @@ class WebSocketJanusTransport extends JanusTransport {
   void connect() {
     try {
       isConnected = true;
-      channel = WebSocketChannel.connect(Uri.parse(url!), protocols: ['janus-protocol']);
+      channel = WebSocketChannel.connect(Uri.parse(url!),
+          protocols: ['janus-protocol']);
     } catch (e) {
       print(e.toString());
       print('something went wrong');
@@ -135,7 +138,8 @@ class WebSocketJanusTransport extends JanusTransport {
     stream.listen((event) {
       final msg = parse(event);
       final transaction = msg['transaction'];
-      if (transaction != null && _pendingTransactions.containsKey(transaction)) {
+      if (transaction != null &&
+          _pendingTransactions.containsKey(transaction)) {
         _pendingTransactions[transaction]!.complete(msg);
         _pendingTransactions.remove(transaction);
       }

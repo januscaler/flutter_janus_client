@@ -2,7 +2,12 @@ part of janus_client;
 
 class JanusVideoCallPlugin extends JanusPlugin {
   JanusVideoCallPlugin({handleId, context, transport, session})
-    : super(context: context, handleId: handleId, plugin: JanusPlugins.VIDEO_CALL, session: session, transport: transport);
+      : super(
+            context: context,
+            handleId: handleId,
+            plugin: JanusPlugins.VIDEO_CALL,
+            session: session,
+            transport: transport);
 
   /// Get List of peers
   ///
@@ -35,7 +40,16 @@ class JanusVideoCallPlugin extends JanusPlugin {
   ///
   /// since it is asynchronous request result can only be extracted from event messages
   ///
-  Future<void> set({RTCSessionDescription? jsep, bool? audio, bool? video, int? bitrate, bool? record, String? filename, int? substream, int? temporal, int? fallback}) async {
+  Future<void> set(
+      {RTCSessionDescription? jsep,
+      bool? audio,
+      bool? video,
+      int? bitrate,
+      bool? record,
+      String? filename,
+      int? substream,
+      int? temporal,
+      int? fallback}) async {
     var payload = {
       "request": "set",
       "audio": audio,
@@ -118,25 +132,42 @@ class JanusVideoCallPlugin extends JanusPlugin {
     }
     _onCreated = true;
     messages?.listen((event) {
-      TypedEvent<JanusEvent> typedEvent = TypedEvent<JanusEvent>(event: JanusEvent.fromJson(event.event), jsep: event.jsep);
+      TypedEvent<JanusEvent> typedEvent = TypedEvent<JanusEvent>(
+          event: JanusEvent.fromJson(event.event), jsep: event.jsep);
       var data = typedEvent.event.plugindata?.data;
       if (data == null) return;
-      if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'registered') {
-        typedEvent.event.plugindata?.data = VideoCallRegisteredEvent.fromJson(data);
+      if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'registered') {
+        typedEvent.event.plugindata?.data =
+            VideoCallRegisteredEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
-      } else if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'calling') {
-        typedEvent.event.plugindata?.data = VideoCallCallingEvent.fromJson(data);
+      } else if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'calling') {
+        typedEvent.event.plugindata?.data =
+            VideoCallCallingEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
-      } else if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'update') {
+      } else if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'update') {
         typedEvent.event.plugindata?.data = VideoCallUpdateEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
-      } else if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'incomingcall') {
-        typedEvent.event.plugindata?.data = VideoCallIncomingCallEvent.fromJson(data);
+      } else if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'incomingcall') {
+        typedEvent.event.plugindata?.data =
+            VideoCallIncomingCallEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
-      } else if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'accepted') {
-        typedEvent.event.plugindata?.data = VideoCallAcceptedEvent.fromJson(data);
+      } else if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'accepted') {
+        typedEvent.event.plugindata?.data =
+            VideoCallAcceptedEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
-      } else if (data['videocall'] == 'event' && data['result'] != null && data['result']['event'] == 'hangup') {
+      } else if (data['videocall'] == 'event' &&
+          data['result'] != null &&
+          data['result']['event'] == 'hangup') {
         typedEvent.event.plugindata?.data = VideoCallHangupEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
       } else if (data['videocall'] == 'event' && data['result'] != null && data['result'].containsKey('list')) {

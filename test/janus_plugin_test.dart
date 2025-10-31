@@ -14,7 +14,8 @@ void main() async {
     late JanusTransport transport;
 
     setUp(() {
-      transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+      transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       client = JanusClient(transport: transport);
 
       // Create a basic streaming plugin for testing
@@ -32,16 +33,20 @@ void main() async {
 
       // Assert
       expect(result, isNull,
-        reason: 'getBitrate should return null when no WebRTC connection is established');
+          reason:
+              'getBitrate should return null when no WebRTC connection is established');
     });
 
-    test('getBitrate returns null when called with mid parameter and no connection', () async {
+    test(
+        'getBitrate returns null when called with mid parameter and no connection',
+        () async {
       // Act
       final result = await plugin.getBitrate('v1');
 
       // Assert
       expect(result, isNull,
-        reason: 'getBitrate should return null for specific mid when no WebRTC connection');
+          reason:
+              'getBitrate should return null for specific mid when no WebRTC connection');
     });
 
     test('getBitrate handles empty mid parameter correctly', () async {
@@ -50,13 +55,13 @@ void main() async {
 
       // Assert
       expect(result, isNull,
-        reason: 'getBitrate should handle empty mid parameter gracefully');
+          reason: 'getBitrate should handle empty mid parameter gracefully');
     });
 
     test('getBitrate method exists and is callable', () {
       // Assert
       expect(plugin.getBitrate, isA<Function>(),
-        reason: 'getBitrate method should exist on JanusPlugin');
+          reason: 'getBitrate method should exist on JanusPlugin');
     });
 
     test('getBitrate method signature accepts optional mid parameter', () {
@@ -64,9 +69,9 @@ void main() async {
       // No runtime assertions needed - compilation success is the test
 
       // Act & Assert - These should compile without errors
-      plugin.getBitrate();        // No parameter
-      plugin.getBitrate(null);    // Explicit null
-      plugin.getBitrate('v1');    // String parameter
+      plugin.getBitrate(); // No parameter
+      plugin.getBitrate(null); // Explicit null
+      plugin.getBitrate('v1'); // String parameter
 
       expect(true, isTrue, reason: 'Method signature test passed');
     });
@@ -74,7 +79,8 @@ void main() async {
 
   group('JanusPlugin getBitrate() Implementation Tests', () {
     test('Bitrate calculation variables are properly initialized', () {
-      final transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+      final transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       final client = JanusClient(transport: transport);
       final plugin = JanusStreamingPlugin(
         context: client,
@@ -89,8 +95,10 @@ void main() async {
       expect(plugin.getBitrate, isA<Function>());
     });
 
-    test('Multiple getBitrate calls with different mids should not interfere', () async {
-      final transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+    test('Multiple getBitrate calls with different mids should not interfere',
+        () async {
+      final transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       final client = JanusClient(transport: transport);
       final plugin = JanusStreamingPlugin(
         context: client,
@@ -113,8 +121,11 @@ void main() async {
       expect(result4, isNull);
     });
 
-    test('getBitrate with null mid parameter should behave same as no parameter', () async {
-      final transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+    test(
+        'getBitrate with null mid parameter should behave same as no parameter',
+        () async {
+      final transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       final client = JanusClient(transport: transport);
       final plugin = JanusStreamingPlugin(
         context: client,
@@ -129,11 +140,12 @@ void main() async {
 
       // Assert - Both should return same result (null in this case)
       expect(result1, equals(result2),
-        reason: 'getBitrate(null) should behave identically to getBitrate()');
+          reason: 'getBitrate(null) should behave identically to getBitrate()');
     });
 
     test('getBitrate should handle very long mid strings gracefully', () async {
-      final transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+      final transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       final client = JanusClient(transport: transport);
       final plugin = JanusStreamingPlugin(
         context: client,
@@ -148,11 +160,13 @@ void main() async {
 
       // Assert - Should not throw exception
       expect(result, isNull,
-        reason: 'getBitrate should handle very long mid strings gracefully');
+          reason: 'getBitrate should handle very long mid strings gracefully');
     });
 
-    test('getBitrate should handle special characters in mid parameter', () async {
-      final transport = RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
+    test('getBitrate should handle special characters in mid parameter',
+        () async {
+      final transport =
+          RestJanusTransport(url: 'https://janus.conf.meetecho.com/janus');
       final client = JanusClient(transport: transport);
       final plugin = JanusStreamingPlugin(
         context: client,
@@ -162,12 +176,19 @@ void main() async {
       );
 
       // Act - Test various special characters
-      final specialMids = ['v1-test', 'v1_test', 'v1.test', 'v1@test', 'v1#test', '日本語'];
+      final specialMids = [
+        'v1-test',
+        'v1_test',
+        'v1.test',
+        'v1@test',
+        'v1#test',
+        '日本語'
+      ];
 
       for (final mid in specialMids) {
         final result = await plugin.getBitrate(mid);
         expect(result, isNull,
-          reason: 'getBitrate should handle special characters in mid: $mid');
+            reason: 'getBitrate should handle special characters in mid: $mid');
       }
     });
   });

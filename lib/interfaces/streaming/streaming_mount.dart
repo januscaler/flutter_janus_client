@@ -12,7 +12,9 @@ class StreamingMount {
     streaming = json['streaming'];
     create = json['create'];
     permanent = json['permanent'];
-    stream = json['stream'] != null ? StreamingPluginStream.fromJson(json['stream']) : null;
+    stream = json['stream'] != null
+        ? StreamingPluginStream.fromJson(json['stream'])
+        : null;
   }
   String? streaming;
   String? create;

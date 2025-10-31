@@ -50,14 +50,20 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
         stringIds: false,
         apiSecret: "SecureIt",
         transport: ws,
-        iceServers: [RTCIceServer(urls: "stun:stun1.l.google.com:19302", username: "", credential: "")]);
+        iceServers: [
+          RTCIceServer(
+              urls: "stun:stun1.l.google.com:19302",
+              username: "",
+              credential: "")
+        ]);
     session = await client?.createSession();
     pluginHandle = await session?.attach<JanusAudioBridgePlugin>();
     // List<MediaDeviceInfo> devices =
     //     await navigator.mediaDevices.enumerateDevices();
     // MediaDeviceInfo microphone =
     //     devices.firstWhere((element) => element.kind == "audioinput");
-    await pluginHandle?.initializeMediaDevices(mediaConstraints: {"audio": true, "video": false});
+    await pluginHandle?.initializeMediaDevices(
+        mediaConstraints: {"audio": true, "video": false});
     pluginHandle?.joinRoom(myRoom, display: "Shivansh");
 
     // await Helper.selectAudioInput(microphone.deviceId);
@@ -109,7 +115,8 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
           participants.update(data.userId.toString(), (value) {
             return value?.copyWith(talking: data.isTalking);
           }, ifAbsent: () {
-            return participants[data.userId.toString()]?.copyWith(talking: data.isTalking);
+            return participants[data.userId.toString()]
+                ?.copyWith(talking: data.isTalking);
           });
         });
       }
@@ -161,7 +168,9 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
             icon: Icon(Icons.input),
             itemBuilder: (BuildContext context) {
               if (_mediaDevicesList != null) {
-                return _mediaDevicesList!.where((device) => device.kind == 'audioinput').map((device) {
+                return _mediaDevicesList!
+                    .where((device) => device.kind == 'audioinput')
+                    .map((device) {
                   return PopupMenuItem<String>(
                     value: device.deviceId,
                     child: Text(device.label),
@@ -211,7 +220,9 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
               ),
               onPressed: callStarted
                   ? () async {
-                      if (pluginHandle?.webRTCHandle?.peerConnection?.signalingState != RTCSignalingState.RTCSignalingStateClosed) {
+                      if (pluginHandle
+                              ?.webRTCHandle?.peerConnection?.signalingState !=
+                          RTCSignalingState.RTCSignalingStateClosed) {
                         setState(() {
                           muted = !muted;
                         });
@@ -241,14 +252,17 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
               child: ListView.builder(
                   itemCount: remoteRenderers.entries.map((e) => e.value).length,
                   itemBuilder: (context, index) {
-                    var renderer = remoteRenderers.entries.map((e) => e.value).toList()[index];
+                    var renderer = remoteRenderers.entries
+                        .map((e) => e.value)
+                        .toList()[index];
                     return Container(
                         color: Colors.red,
                         width: 50,
                         height: 50,
                         child: RTCVideoView(
                           renderer,
-                          objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
+                          objectFit: RTCVideoViewObjectFit
+                              .RTCVideoViewObjectFitContain,
                         ));
                   })),
         ),
@@ -269,7 +283,9 @@ class _AudioRoomState extends State<TypedAudioRoomV2> {
                           color: Colors.white,
                         ),
                         Icon(
-                          e?.talking == true ? Icons.volume_up_sharp : Icons.volume_mute_sharp,
+                          e?.talking == true
+                              ? Icons.volume_up_sharp
+                              : Icons.volume_mute_sharp,
                           color: Colors.white,
                         )
                       ],
