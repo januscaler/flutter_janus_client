@@ -46,13 +46,13 @@ jobs:
           cp -r doc/api/* publish/docs/
 
       - name: Upload demo artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: flutter-web-demo
           path: publish/demo
 
       - name: Upload docs artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-docs
           path: publish/docs
