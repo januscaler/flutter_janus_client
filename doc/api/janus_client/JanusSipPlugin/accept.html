@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusSipPlugin-class.html">JanusSipPlugin</a></li>
     <li class="self-crumb">accept method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -61,7 +58,7 @@
 <span class="name ">accept</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="accept-param-srtp"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">srtp</span>, </span></li>
 <li><span class="parameter" id="accept-param-headers"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">headers</span>, </span></li>
 <li><span class="parameter" id="accept-param-autoAcceptReInvites"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">autoAcceptReInvites</span>, </span></li>
-<li><span class="parameter" id="accept-param-sessionDescription"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">sessionDescription</span>, </span></li>
+<li><span class="parameter" id="accept-param-sessionDescription"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">sessionDescription</span>, </span></li>
 </ol>})
 
       
@@ -69,11 +66,15 @@
     </section>
     
 <section class="desc markdown">
-  <p>Accept Incoming Call</p>
-<p><code>sessionDescription</code> : For accepting the call we can have offerless sip invite too, so here we have intententionaly given flexibility of having either offer or answer depending on what peer is providing  if it is not provided, default offer or answer is created and used with audio as sendrecv depending on the signaling state</p>
-<p><code>headers</code> : object with key/value mappings (header name/value), to specify custom headers to add to the SIP INVITE; optional</p>
-<p><code>srtp</code> : whether to mandate (sdes_mandatory) or offer (sdes_optional) SRTP support; optional</p>
-<p><code>autoAcceptReInvites</code> : whether we should blindly accept re-INVITEs with a 200 OK instead of relaying the SDP to the application; optional, TRUE by default</p>
+  <p>Accepts an incoming SIP INVITE and negotiates WebRTC when required.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>srtp</code>: Forces SRTP policy (<code>sdes_mandatory</code> or <code>sdes_optional</code>).</li>
+<li><code>headers</code>: Custom headers to include in the SIP response.</li>
+<li><code>autoAcceptReInvites</code>: Automatically sends 200 OK to re-INVITEs.</li>
+<li><code>sessionDescription</code>: Custom SDP to use; defaults to an answer when
+the signalling state has a remote offer, otherwise falls back to a local offer.</li>
+</ul>
 </section>
 
 
@@ -104,7 +105,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusSipPlugin-class.html">JanusSipPlugin</a></li>
     <li class="self-crumb">accept method</li>
 </ol>
@@ -118,7 +119,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

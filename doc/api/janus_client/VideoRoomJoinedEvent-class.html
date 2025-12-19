@@ -25,24 +25,21 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client.dart</a></li>
+    <li><a href="../janus_client/">janus_client.dart</a></li>
     <li class="self-crumb">VideoRoomJoinedEvent class</li>
   </ol>
   <div class="self-name">VideoRoomJoinedEvent</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -85,7 +82,7 @@
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="VideoRoomJoinedEvent" class="callable">
+        <dt id="VideoRoomJoinedEvent.new" class="callable">
           <span class="name"><a href="../janus_client/VideoRoomJoinedEvent/VideoRoomJoinedEvent.html">VideoRoomJoinedEvent</a></span><span class="signature">({<span class="parameter" id="-param-videoroom"><span class="type-annotation">dynamic</span> <span class="parameter-name">videoroom</span>, </span><span class="parameter" id="-param-room"><span class="type-annotation">dynamic</span> <span class="parameter-name">room</span>, </span><span class="parameter" id="-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="-param-id"><span class="type-annotation">dynamic</span> <span class="parameter-name">id</span>, </span><span class="parameter" id="-param-privateId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">privateId</span>, </span><span class="parameter" id="-param-publishers"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../janus_client/Publishers-class.html">Publishers</a></span>&gt;</span>?</span> <span class="parameter-name">publishers</span></span>})</span>
         </dt>
         <dd>
@@ -299,7 +296,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client</a></li>
+    <li><a href="../janus_client/">janus_client</a></li>
     <li class="self-crumb">VideoRoomJoinedEvent class</li>
 </ol>
 
@@ -312,7 +309,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

@@ -31,17 +31,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -158,12 +155,20 @@
   
 </dd>
 
+          <dt id="BitrateMeasurement">
+  <span class="name "><a href="../janus_client/BitrateMeasurement-class.html">BitrateMeasurement</a></span> 
+
+</dt>
+<dd>
+  Holds a bitrate sample in bits per second together with the sampled time.
+</dd>
+
           <dt id="ConfigureStream">
   <span class="name "><a href="../janus_client/ConfigureStream-class.html">ConfigureStream</a></span> 
 
 </dt>
 <dd>
-  
+  Represents a single remote simulcast layer configuration request.
 </dd>
 
           <dt id="CreateMediaItem">
@@ -366,6 +371,15 @@
   
 </dd>
 
+          <dt id="JanusStreamStats">
+  <span class="name "><a href="../janus_client/JanusStreamStats-class.html">JanusStreamStats</a></span> 
+
+</dt>
+<dd>
+  Utility wrapper around <code>RTCPeerConnection.getStats()</code> that offers
+incremental bitrate and network quality helpers.
+</dd>
+
           <dt id="JanusTextRoom">
   <span class="name "><a href="../janus_client/JanusTextRoom-class.html">JanusTextRoom</a></span> 
 
@@ -464,7 +478,7 @@ transport_wide_cc_ext : false</name>
 
 </dt>
 <dd>
-  
+  Wrapper around the Janus VideoRoom plugin with typed helpers.
 </dd>
 
           <dt id="JanusWebRTCHandle">
@@ -481,6 +495,23 @@ transport_wide_cc_ext : false</name>
 </dt>
 <dd>
   
+</dd>
+
+          <dt id="NetworkQualitySnapshot">
+  <span class="name "><a href="../janus_client/NetworkQualitySnapshot-class.html">NetworkQualitySnapshot</a></span> 
+
+</dt>
+<dd>
+  Captures the outcome of a network quality evaluation.
+</dd>
+
+          <dt id="NetworkQualityThresholds">
+  <span class="name "><a href="../janus_client/NetworkQualityThresholds-class.html">NetworkQualityThresholds</a></span> 
+
+</dt>
+<dd>
+  Classification thresholds that translate bitrate samples into
+<a href="../janus_client/NetworkQuality.html">NetworkQuality</a> values.
 </dd>
 
           <dt id="Participants">
@@ -575,6 +606,22 @@ therefore for events sent by Janus server is received with the help of polling.
 
           <dt id="RtpForwardStopped">
   <span class="name "><a href="../janus_client/RtpForwardStopped-class.html">RtpForwardStopped</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="RtpStreamQuery">
+  <span class="name "><a href="../janus_client/RtpStreamQuery-class.html">RtpStreamQuery</a></span> 
+
+</dt>
+<dd>
+  Declarative matcher used to locate a specific RTP stats entry.
+</dd>
+
+          <dt id="ScreenSelectDialog">
+  <span class="name "><a href="../janus_client/ScreenSelectDialog-class.html">ScreenSelectDialog</a></span> 
 
 </dt>
 <dd>
@@ -821,6 +868,14 @@ therefore for events sent by Janus server is received with the help of polling.
   
 </dd>
 
+          <dt id="ThumbnailWidget">
+  <span class="name "><a href="../janus_client/ThumbnailWidget-class.html">ThumbnailWidget</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
           <dt id="Transports">
   <span class="name "><a href="../janus_client/Transports-class.html">Transports</a></span> 
 
@@ -887,6 +942,14 @@ therefore for events sent by Janus server is received with the help of polling.
 
           <dt id="VideoCallRegisteredEvent">
   <span class="name "><a href="../janus_client/VideoCallRegisteredEvent-class.html">VideoCallRegisteredEvent</a></span> 
+
+</dt>
+<dd>
+  
+</dd>
+
+          <dt id="VideoCallRegisteredListEvent">
+  <span class="name "><a href="../janus_client/VideoCallRegisteredListEvent-class.html">VideoCallRegisteredListEvent</a></span> 
 
 </dt>
 <dd>
@@ -988,6 +1051,7 @@ therefore for events sent by Janus server is received with the help of polling.
 <dd>
   This transport class is provided to <a href="../janus_client/JanusClient-class.html">JanusClient</a> instances in transport property in order to <br>
 inform the plugin that we need to use WebSockets as a transport mechanism for communicating with Janus Server.<br>
+sendCompleterTimeout is used to set timeout duration for each send request to Janus server resolving against transaction.
 </dd>
 
       </dl>
@@ -996,12 +1060,44 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
     <section class="summary offset-anchor" id="enums">
       <h2>Enums</h2>
       <dl>
+          <dt id="BitrateUnit">
+  <span class="name "><a href="../janus_client/BitrateUnit.html">BitrateUnit</a></span> 
+
+</dt>
+<dd>
+  Output unit that bitrates can be converted into when formatting results.
+</dd>
+
           <dt id="ConfigureStreamQuality">
   <span class="name "><a href="../janus_client/ConfigureStreamQuality.html">ConfigureStreamQuality</a></span> 
 
 </dt>
 <dd>
-  
+  Quality tiers used when switching among simulcast layers.
+</dd>
+
+          <dt id="NetworkQuality">
+  <span class="name "><a href="../janus_client/NetworkQuality.html">NetworkQuality</a></span> 
+
+</dt>
+<dd>
+  High-level network state derived from bitrate samples.
+</dd>
+
+          <dt id="NetworkQualityReason">
+  <span class="name "><a href="../janus_client/NetworkQualityReason.html">NetworkQualityReason</a></span> 
+
+</dt>
+<dd>
+  Explains how a <a href="../janus_client/NetworkQualitySnapshot-class.html">NetworkQualitySnapshot</a> was resolved.
+</dd>
+
+          <dt id="RtpStreamDirection">
+  <span class="name "><a href="../janus_client/RtpStreamDirection.html">RtpStreamDirection</a></span> 
+
+</dt>
+<dd>
+  Describes which WebRTC statistics bucket should be inspected.
 </dd>
 
           <dt id="SipHoldState">
@@ -1051,7 +1147,7 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
 
           <dt id="getUuid" class="callable">
   <span class="name"><a href="../janus_client/getUuid.html">getUuid</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/uuid/4.5.1/uuid/Uuid-class.html">Uuid</a></span>
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/uuid/4.5.2/uuid/Uuid-class.html">Uuid</a></span>
   </span>
   
 
@@ -1089,7 +1185,7 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
 </dd>
 
           <dt id="stopAllTracks" class="callable">
-  <span class="name"><a href="../janus_client/stopAllTracks.html">stopAllTracks</a></span><span class="signature">(<wbr><span class="parameter" id="stopAllTracks-param-stream"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span> <span class="parameter-name">stream</span></span>)
+  <span class="name"><a href="../janus_client/stopAllTracks.html">stopAllTracks</a></span><span class="signature">(<wbr><span class="parameter" id="stopAllTracks-param-stream"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span> <span class="parameter-name">stream</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
@@ -1117,6 +1213,25 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
       </dl>
     </section>
 
+    <section class="summary offset-anchor" id="typedefs">
+      <h2>Typedefs</h2>
+      <dl>
+          
+  <dt id="BitrateFormatter" class="callable">
+    <span class="name"><a href="../janus_client/BitrateFormatter.html">BitrateFormatter</a></span><span class="signature">
+      <span class="returntype parameter">= <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a> Function<span class="signature">(<span class="parameter" id="param-measurement"><span class="type-annotation"><a href="../janus_client/BitrateMeasurement-class.html">BitrateMeasurement</a></span> <span class="parameter-name">measurement</span></span>)</span></span>
+    </span>
+    
+
+  </dt>
+  <dd>
+    Signature for functions that turn a <a href="../janus_client/BitrateMeasurement-class.html">BitrateMeasurement</a> into display text.
+    
+
+  </dd>
+
+      </dl>
+    </section>
 
   </div> <!-- /.main-content -->
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
@@ -1134,8 +1249,8 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
     <h5><span class="package-name">janus_client</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="../interfaces_sip_sip_event">interfaces/sip/sip_event</a></li>
-      <li><a href="../janus_client">janus_client</a></li>
+      <li><a href="../interfaces_sip_sip_event/">interfaces/sip/sip_event</a></li>
+      <li><a href="../janus_client/">janus_client</a></li>
 </ol>
 
   </div>
@@ -1146,7 +1261,7 @@ inform the plugin that we need to use WebSockets as a transport mechanism for co
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusClientInfo-class.html">JanusClientInfo</a></li>
     <li class="self-crumb">JanusClientInfo.fromJson constructor</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
   <div
@@ -102,11 +99,16 @@
   _authToken = json[&#39;auth_token&#39;];
   _eventHandlers = json[&#39;event_handlers&#39;];
   _opaqueidInApi = json[&#39;opaqueid_in_api&#39;];
-  _dependencies = json[&#39;dependencies&#39;] != null ? Dependencies.fromJson(json[&#39;dependencies&#39;]) : null;
-  _transports = json[&#39;transports&#39;] != null ? Transports.fromJson(json[&#39;transports&#39;]) : null;
+  _dependencies = json[&#39;dependencies&#39;] != null
+      ? Dependencies.fromJson(json[&#39;dependencies&#39;])
+      : null;
+  _transports = json[&#39;transports&#39;] != null
+      ? Transports.fromJson(json[&#39;transports&#39;])
+      : null;
   _events = json[&#39;events&#39;];
   _loggers = json[&#39;loggers&#39;];
-  _plugins = json[&#39;plugins&#39;] != null ? Plugins.fromJson(json[&#39;plugins&#39;]) : null;
+  _plugins =
+      json[&#39;plugins&#39;] != null ? Plugins.fromJson(json[&#39;plugins&#39;]) : null;
 }</code></pre>
 </section>
 
@@ -121,7 +123,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusClientInfo-class.html">JanusClientInfo</a></li>
     <li class="self-crumb">JanusClientInfo.fromJson constructor</li>
 </ol>
@@ -135,7 +137,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

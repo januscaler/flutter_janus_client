@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusTextRoomPlugin-class.html">JanusTextRoomPlugin</a></li>
     <li class="self-crumb">editRoom method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -72,16 +69,17 @@
     </section>
     
 <section class="desc markdown">
-  <p><a href="../../janus_client/JanusTextRoomPlugin/editRoom.html">editRoom</a><br>
-this can be used to create a new text room .<br>
-Notice that, in general, all users can create rooms. If you want to limit this functionality, you can configure an admin admin_key in the plugin settings. When configured, only "create" requests that include the correct admin_key value in an "admin_key" property will succeed, and will be rejected otherwise. Notice that you can optionally extend this functionality to RTP forwarding as well, in order to only allow trusted clients to use that feature.<br><br>
-<code>roomId</code> : unique numeric ID, optional, chosen by plugin if missing.<br>
-<code>permanent</code> : true|false, whether the room should be saved in the config file, default=false.<br>
-<code>description</code> : pretty name of the room, optional.<br>
-<code>secret</code> : existing password required to edit/destroy the room, optional.<br>
-<code>newSecret</code> : new password required to edit/destroy the room, optional.<br>
-<code>pin</code> : password required to join the room, optional.<br>
-<code>isPrivate</code> : true|false, whether the room should appear in a list request.<br></p>
+  <p>Updates metadata or access settings for an existing text room.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>roomId</code>: Room identifier.</li>
+<li><code>description</code>: Updated display name.</li>
+<li><code>secret</code>: Existing admin secret when required.</li>
+<li><code>newSecret</code>: New admin secret for future operations.</li>
+<li><code>pin</code>: New participant pin.</li>
+<li><code>isPrivate</code>: Toggles list visibility.</li>
+<li><code>permanent</code>: Persists changes to the configuration file.</li>
+</ul>
 </section>
 
 
@@ -118,7 +116,7 @@ Notice that, in general, all users can create rooms. If you want to limit this f
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusTextRoomPlugin-class.html">JanusTextRoomPlugin</a></li>
     <li class="self-crumb">editRoom method</li>
 </ol>
@@ -132,7 +130,7 @@ Notice that, in general, all users can create rooms. If you want to limit this f
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

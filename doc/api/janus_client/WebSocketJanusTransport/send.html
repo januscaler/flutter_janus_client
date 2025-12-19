@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/WebSocketJanusTransport-class.html">WebSocketJanusTransport</a></li>
     <li class="self-crumb">send method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -67,7 +64,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>this method is used to send json payload to Janus Server for communicating the intent.</p>
+  <p>Send JSON to Janus safely with 3 retries</p>
 </section>
 
 
@@ -75,16 +72,37 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;dynamic&gt; send(Map&lt;String, dynamic&gt; data, {int? handleId}) async {
-  if (data[&#39;transaction&#39;] != null) {
-    data[&#39;session_id&#39;] = sessionId;
-    if (handleId != null) {
-      data[&#39;handle_id&#39;] = handleId;
-    }
-    sink!.add(stringify(data));
-    return parse(await stream.firstWhere((element) =&gt; (parse(element)[&#39;transaction&#39;] == data[&#39;transaction&#39;]), orElse: () =&gt; {}));
-  } else {
-    throw &quot;transaction key missing in body&quot;;
+  if (!isConnected || sink == null) {
+    throw StateError(&quot;WebSocket is not connected&quot;);
   }
+
+  final original = Map&lt;String, dynamic&gt;.from(data);
+
+  for (int attempt = 1; attempt &lt;= maxMessageMissedRetries; attempt++) {
+    final Map&lt;String, dynamic&gt; payload = Map&lt;String, dynamic&gt;.from(original);
+    final String transaction = getUuid().v4();
+    payload[&#39;transaction&#39;] = transaction;
+    payload[&#39;session_id&#39;] = sessionId;
+    if (handleId != null) payload[&#39;handle_id&#39;] = handleId;
+
+    final completer = Completer&lt;dynamic&gt;();
+    _pendingTransactions[transaction] = completer;
+
+    sink!.add(stringify(payload));
+
+    try {
+      final response = await completer.future.timeout(sendCompleterTimeout);
+      _pendingTransactions.remove(transaction);
+      return response;
+    } on TimeoutException {
+      _pendingTransactions.remove(transaction);
+      if (attempt == maxMessageMissedRetries) {
+        throw TimeoutException(&quot;Janus transaction timed out after $maxMessageMissedRetries attempts&quot;);
+      }
+    }
+  }
+
+  throw TimeoutException(&quot;Unexpected send() failure&quot;);
 }</code></pre>
 </section>
 
@@ -99,7 +117,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/WebSocketJanusTransport-class.html">WebSocketJanusTransport</a></li>
     <li class="self-crumb">send method</li>
 </ol>
@@ -113,7 +131,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

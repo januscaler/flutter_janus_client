@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusSipPlugin-class.html">JanusSipPlugin</a></li>
     <li class="self-crumb">register method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -85,10 +82,30 @@
     </section>
     
 <section class="desc markdown">
-  <p>Register client to sip server
-<code>username</code> : SIP URI to register
-<code>type</code> : if guest or helper, no SIP REGISTER is actually sent; optional
-<code>sendRegister</code> : true|false; if false, no SIP REGISTER is actually sent; optional</p>
+  <p>Registers the plugin as a SIP endpoint with the remote registrar.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>username</code>: SIP URI used for registration (e.g. <code>sip:alice@example.com</code>).</li>
+<li><code>type</code>: <code>guest</code> or <code>helper</code> skips the actual SIP REGISTER.</li>
+<li><code>sendRegister</code>: Disables REGISTER exchange when <code>false</code>.</li>
+<li><code>forceUdp</code>: Forces SIP messaging over UDP when <code>true</code>.</li>
+<li><code>forceTcp</code>: Forces SIP messaging over TCP when <code>true</code>.</li>
+<li><code>sips</code>: Registers a SIPS URI alongside the SIP URI.</li>
+<li><code>rfc2543Cancel</code>: Sends CANCEL without provisional response acknowledgement.</li>
+<li><code>refresh</code>: Performs a registration refresh instead of a new registration.</li>
+<li><code>secret</code>: Plain-text password used for authentication.</li>
+<li><code>ha1Secret</code>: MD5 hashed password (HA1) alternative.</li>
+<li><code>authuser</code>: Overrides the authentication username.</li>
+<li><code>displayName</code>: Display name sent in the REGISTER.</li>
+<li><code>userAgent</code>: Custom user-agent header value.</li>
+<li><code>proxy</code>: Registrar or outbound proxy URI.</li>
+<li><code>outboundProxy</code>: Secondary outbound proxy when required.</li>
+<li><code>headers</code>: Custom headers to include in the REGISTER request.</li>
+<li><code>contactParams</code>: Additional parameters appended to the Contact header.</li>
+<li><code>incomingHeaderPrefixes</code>: Custom header prefixes to surface in events.</li>
+<li><code>masterId</code>: References another registered account acting as master.</li>
+<li><code>registerTtl</code>: Overrides the registration TTL in seconds.</li>
+</ul>
 </section>
 
 
@@ -156,7 +173,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusSipPlugin-class.html">JanusSipPlugin</a></li>
     <li class="self-crumb">register method</li>
 </ol>
@@ -170,7 +187,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

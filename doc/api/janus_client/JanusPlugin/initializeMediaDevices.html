@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">initializeMediaDevices method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -57,12 +54,13 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span></span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span></span>
 <span class="name ">initializeMediaDevices</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="initializeMediaDevices-param-mediaConstraints"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">mediaConstraints</span>, </span></li>
 <li><span class="parameter" id="initializeMediaDevices-param-useDisplayMediaDevices"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">useDisplayMediaDevices</span> = <span class="default-value">false</span>, </span></li>
 <li><span class="parameter" id="initializeMediaDevices-param-disableDevicePrediction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">disableDevicePrediction</span> = <span class="default-value">false</span>, </span></li>
-<li><span class="parameter" id="initializeMediaDevices-param-transceiverDirection"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/TransceiverDirection.html">TransceiverDirection</a>?</span> <span class="parameter-name">transceiverDirection</span> = <span class="default-value">TransceiverDirection.SendOnly</span>, </span></li>
-<li><span class="parameter" id="initializeMediaDevices-param-simulcastSendEncodings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCRtpEncoding-class.html">RTCRtpEncoding</a></span>&gt;</span>?</span> <span class="parameter-name">simulcastSendEncodings</span>, </span></li>
+<li><span class="parameter" id="initializeMediaDevices-param-transceiverDirection"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/TransceiverDirection.html">TransceiverDirection</a>?</span> <span class="parameter-name">transceiverDirection</span> = <span class="default-value">TransceiverDirection.SendOnly</span>, </span></li>
+<li><span class="parameter" id="initializeMediaDevices-param-simulcastSendEncodings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCRtpEncoding-class.html">RTCRtpEncoding</a></span>&gt;</span>?</span> <span class="parameter-name">simulcastSendEncodings</span>, </span></li>
+<li><span class="parameter" id="initializeMediaDevices-param-desktopCaptureContext"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>?</span> <span class="parameter-name">desktopCaptureContext</span>, </span></li>
 </ol>})
 
       
@@ -70,14 +68,66 @@
     </section>
     
 <section class="desc markdown">
-  <p>Helper method that generates MediaStream from your device camera that will be automatically added to peer connection instance internally used by janus client</p>
-<p><code>useDisplayMediaDevices</code> : It can be used to capture your device screen.<br>
-<code>disableDevicePrediction</code> : Disable device prediction when video or audio is not specified or unknown.<br>
-<code>mediaConstraints</code> : Using this map you can specify media contraits such as resolution and fps etc.<br>
-<code>simulcastSendEncodings</code> : This list is used to specify encoding for simulcasting or (svc if room codec is vp9)<br>
-<code>transceiverDirection</code> : It will be ignored if you don't specify <code>simulcastSendEncodings</code>
-you can use this method to get the stream and show live preview of your camera to RTCVideoRendererView <br><br>
-keep in mind this method exist to help in getting started with this library quickly,educational purposes or for basic functionalities, for custom use cases it is recommended to rely on your own implementation of this method using PeerConnection</p>
+  <p>Initializes device media (camera, microphone, or display capture) and
+wires the resulting stream into the plugin's peer connection.</p>
+<p>The default behaviour predicts sensible audio/video constraints when
+possible so callers can pass <code>null</code> for <code>mediaConstraints</code>. To take full
+control provide a map compatible with <code>navigator.mediaDevices</code>.</p>
+<p>Parameter hints:</p>
+<ul>
+<li><code>useDisplayMediaDevices</code>: set to <code>true</code> to capture the screen instead of
+camera input. Required for iOS/macOS screen share support.</li>
+<li><code>disableDevicePrediction</code>: skip automatic audio/video constraint hints
+and rely solely on <code>mediaConstraints</code>.</li>
+<li><code>simulcastSendEncodings</code>/<code>transceiverDirection</code>: advanced knobs for
+unified-plan transceivers (e.g. simulcast in video rooms).</li>
+<li><code>desktopCaptureContext</code>: mandatory when <code>useDisplayMediaDevices</code> is true
+on macOS, Windows, or Linux so the native dialog can be presented.</li>
+</ul>
+<p>Platform considerations:</p>
+<ul>
+<li><strong>Android / iOS:</strong> camera capture works out of the box; screen capture
+requires OS-specific entitlements and typically sets
+<code>useDisplayMediaDevices</code> to <code>true</code>.</li>
+<li><strong>Desktop (macOS, Windows, Linux):</strong> provide a valid
+<code>desktopCaptureContext</code> to surface <code>ScreenSelectDialog()</code> when capturing
+displays. Camera capture uses automatic device prediction when available.</li>
+<li><strong>Web:</strong> screen capture is also supported; the browser prompts the user
+without requiring <code>desktopCaptureContext</code>.</li>
+</ul>
+<h3 id="android">Android</h3>
+<pre class="language-dart"><code class="language-dart">Future&lt;MediaStream?&gt; initAndroidCamera(JanusPlugin plugin) {
+  return plugin.initializeMediaDevices(
+    mediaConstraints: {
+      'audio': true,
+      'video': {'facingMode': 'user'},
+    },
+  );
+}
+</code></pre>
+<h3 id="ios">iOS</h3>
+<pre class="language-dart"><code class="language-dart">Future&lt;MediaStream?&gt; initIosScreenShare(
+  BuildContext context,
+  JanusPlugin plugin,
+) {
+  return plugin.initializeMediaDevices(
+    useDisplayMediaDevices: true,
+    mediaConstraints: {'audio': true, 'video': true},
+    desktopCaptureContext: context, // ReplayKit prompt.
+  );
+}
+</code></pre>
+<h3 id="desktop-macos--windows--linux">Desktop (macOS / Windows / Linux)</h3>
+<pre class="language-dart"><code class="language-dart">Future&lt;MediaStream?&gt; initDesktopScreenShare(
+  BuildContext context,
+  JanusPlugin plugin,
+) {
+  return plugin.initializeMediaDevices(
+    useDisplayMediaDevices: true,
+    desktopCaptureContext: context,
+  );
+}
+</code></pre>
 </section>
 
 
@@ -90,39 +140,76 @@ keep in mind this method exist to help in getting started with this library quic
   bool disableDevicePrediction = false,
   TransceiverDirection? transceiverDirection = TransceiverDirection.SendOnly,
   List&lt;RTCRtpEncoding&gt;? simulcastSendEncodings,
+  BuildContext? desktopCaptureContext,
 }) async {
   await _disposeMediaStreams(ignoreRemote: true);
+  Map&lt;String, dynamic&gt;? constraintsCandidate = mediaConstraints != null ? Map&lt;String, dynamic&gt;.from(mediaConstraints) : null;
+
   if (!disableDevicePrediction) {
-    List&lt;MediaDeviceInfo&gt; videoDevices = await getVideoInputDevices();
-    List&lt;MediaDeviceInfo&gt; audioDevices = await getAudioInputDevices();
-    if (videoDevices.isEmpty &amp;&amp; audioDevices.isEmpty &amp;&amp; !useDisplayMediaDevices) {
-      throw Exception(&quot;No device found for media generation&quot;);
-    }
-    if (mediaConstraints == null) {
-      if (videoDevices.isEmpty &amp;&amp; audioDevices.isNotEmpty) {
-        mediaConstraints = {&quot;audio&quot;: true, &quot;video&quot;: false};
-      } else if (videoDevices.length == 1 &amp;&amp; audioDevices.isNotEmpty) {
-        mediaConstraints = {&quot;audio&quot;: true, &#39;video&#39;: true};
-      } else {
-        mediaConstraints = {
-          &quot;audio&quot;: audioDevices.length &gt; 0,
-          &#39;video&#39;: {
-            &#39;deviceId&#39;: {&#39;exact&#39;: videoDevices.first.deviceId},
-          },
-        };
+    if (!useDisplayMediaDevices) {
+      List&lt;MediaDeviceInfo&gt; videoDevices = await getVideoInputDevices();
+      List&lt;MediaDeviceInfo&gt; audioDevices = await getAudioInputDevices();
+      if (videoDevices.isEmpty &amp;&amp; audioDevices.isEmpty) {
+        throw Exception(&quot;No device found for media generation&quot;);
       }
+      if (constraintsCandidate == null) {
+        if (videoDevices.isEmpty &amp;&amp; audioDevices.isNotEmpty) {
+          constraintsCandidate = {&quot;audio&quot;: true, &quot;video&quot;: false};
+        } else if (videoDevices.length == 1 &amp;&amp; audioDevices.isNotEmpty) {
+          constraintsCandidate = {&quot;audio&quot;: true, &#39;video&#39;: true};
+        } else {
+          constraintsCandidate = {
+            &quot;audio&quot;: audioDevices.isNotEmpty,
+            &#39;video&#39;: {
+              &#39;deviceId&#39;: {&#39;exact&#39;: videoDevices.first.deviceId},
+            },
+          };
+        }
+      }
+    } else {
+      constraintsCandidate ??= {&#39;audio&#39;: true, &#39;video&#39;: true};
     }
   } else {
-    if (mediaConstraints == null) {
-      throw Exception("No media constraints set");
+    if (constraintsCandidate == null) {
+      throw Exception(&quot;No media constraints set&quot;);
     }
   }
-  _context._logger.fine(mediaConstraints);
+
+  final Map&lt;String, dynamic&gt; resolvedConstraints = Map&lt;String, dynamic&gt;.from(constraintsCandidate);
+  _context._logger.fine(resolvedConstraints);
   if (webRTCHandle != null) {
     if (useDisplayMediaDevices == true) {
-      webRTCHandle!.localStream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
+      final displayConstraints = Map&lt;String, dynamic&gt;.from(resolvedConstraints);
+      if (WebRTC.platformIsDesktop) {
+        if (desktopCaptureContext == null) {
+          throw ArgumentError(&#39;desktopCaptureContext is required when capturing display on desktop&#39;);
+        }
+        final source = await showDialog&lt;DesktopCapturerSource&gt;(
+          context: desktopCaptureContext,
+          builder: (context) =&gt; ScreenSelectDialog(),
+        );
+        if (source == null) {
+          _context._logger.fine(&#39;desktop screen capture cancelled by user&#39;);
+          return null;
+        }
+        final videoConstraints = Map&lt;String, dynamic&gt;.from((displayConstraints[&#39;video&#39;] as Map&lt;String, dynamic&gt;?) ?? &lt;String, dynamic&gt;{});
+        videoConstraints[&#39;deviceId&#39;] = {&#39;exact&#39;: source.id};
+        final mandatoryConstraints = Map&lt;String, dynamic&gt;.from((videoConstraints[&#39;mandatory&#39;] as Map&lt;String, dynamic&gt;?) ?? &lt;String, dynamic&gt;{});
+        mandatoryConstraints.putIfAbsent(&#39;frameRate&#39;, () =&gt; 30.0);
+        videoConstraints[&#39;mandatory&#39;] = mandatoryConstraints;
+        displayConstraints[&#39;video&#39;] = videoConstraints;
+        displayConstraints[&#39;audio&#39;] ??= true;
+        try {
+          webRTCHandle!.localStream = await navigator.mediaDevices.getDisplayMedia(displayConstraints);
+        } catch (error) {
+          _context._logger.severe(&#39;Failed to capture desktop display media: $error&#39;);
+          rethrow;
+        }
+      } else {
+        webRTCHandle!.localStream = await navigator.mediaDevices.getDisplayMedia(displayConstraints);
+      }
     } else {
-      webRTCHandle!.localStream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
+      webRTCHandle!.localStream = await navigator.mediaDevices.getUserMedia(resolvedConstraints);
     }
     if (_context._isUnifiedPlan &amp;&amp; !_context._usePlanB) {
       _context._logger.finest(&#39;using unified plan&#39;);
@@ -160,7 +247,7 @@ keep in mind this method exist to help in getting started with this library quic
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">initializeMediaDevices method</li>
 </ol>
@@ -174,7 +261,7 @@ keep in mind this method exist to help in getting started with this library quic
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

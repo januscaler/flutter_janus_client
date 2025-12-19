@@ -25,24 +25,21 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client.dart</a></li>
+    <li><a href="../janus_client/">janus_client.dart</a></li>
     <li class="self-crumb">JanusPlugin class</li>
   </ol>
   <div class="self-name">JanusPlugin</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -87,7 +84,7 @@
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="JanusPlugin" class="callable">
+        <dt id="JanusPlugin.new" class="callable">
           <span class="name"><a href="../janus_client/JanusPlugin/JanusPlugin.html">JanusPlugin</a></span><span class="signature">({<span class="parameter" id="-param-handleId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">handleId</span>, </span><span class="parameter" id="-param-context"><span>required</span> <span class="type-annotation"><a href="../janus_client/JanusClient-class.html">JanusClient</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="-param-transport"><span>required</span> <span class="type-annotation"><a href="../janus_client/JanusTransport-class.html">JanusTransport</a></span> <span class="parameter-name">transport</span>, </span><span class="parameter" id="-param-session"><span>required</span> <span class="type-annotation"><a href="../janus_client/JanusSession-class.html">JanusSession</a></span> <span class="parameter-name">session</span>, </span><span class="parameter" id="-param-plugin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">plugin</span></span>})</span>
         </dt>
         <dd>
@@ -103,7 +100,7 @@
     <dl class="properties">
         <dt id="data" class="property">
   <span class="name"><a href="../janus_client/JanusPlugin/data.html">data</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCDataChannelMessage-class.html">RTCDataChannelMessage</a></span>&gt;</span>?</span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCDataChannelMessage-class.html">RTCDataChannelMessage</a></span>&gt;</span>?</span>
   
 
 </dt>
@@ -139,13 +136,25 @@
 
         <dt id="localStream" class="property">
   <span class="name"><a href="../janus_client/JanusPlugin/localStream.html">localStream</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span>?</span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span>?</span>
   
 
 </dt>
 <dd>
   
   <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="mediaStats" class="property">
+  <span class="name"><a href="../janus_client/JanusPlugin/mediaStats.html">mediaStats</a></span>
+  <span class="signature">&#8596; <a href="../janus_client/JanusStreamStats-class.html">JanusStreamStats</a></span>
+  
+
+</dt>
+<dd>
+  Exposes WebRTC statistics helpers (bitrate calculations, history, etc.).
+  <div class="features"><span class="feature">late</span><span class="feature">final</span></div>
 
 </dd>
 
@@ -163,7 +172,7 @@
 
         <dt id="onData" class="property">
   <span class="name"><a href="../janus_client/JanusPlugin/onData.html">onData</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCDataChannelState.html">RTCDataChannelState</a></span>&gt;</span>?</span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCDataChannelState.html">RTCDataChannelState</a></span>&gt;</span>?</span>
   
 
 </dt>
@@ -175,7 +184,7 @@
 
         <dt id="peerConnection" class="property">
   <span class="name"><a href="../janus_client/JanusPlugin/peerConnection.html">peerConnection</a></span>
-  <span class="signature">&#8594; <a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCPeerConnection-class.html">RTCPeerConnection</a>?</span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCPeerConnection-class.html">RTCPeerConnection</a>?</span>
   
 
 </dt>
@@ -211,7 +220,7 @@
 
         <dt id="remoteStream" class="property">
   <span class="name"><a href="../janus_client/JanusPlugin/remoteStream.html">remoteStream</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaStream-class.html">MediaStream</a></span>&gt;</span>?</span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaStream-class.html">MediaStream</a></span>&gt;</span>?</span>
   
 
 </dt>
@@ -292,28 +301,26 @@
     <dl class="callables">
         <dt id="createAnswer" class="callable">
   <span class="name"><a href="../janus_client/JanusPlugin/createAnswer.html">createAnswer</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a></span>&gt;</span></span>
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  This method is used to create webrtc answer, sets local description on internal PeerConnection object
-It supports both style of answer creation that is plan-b and unified.
+  Creates an SDP answer and sets it as the local description.
   
 
 </dd>
 
         <dt id="createOffer" class="callable">
   <span class="name"><a href="../janus_client/JanusPlugin/createOffer.html">createOffer</a></span><span class="signature">(<wbr>{<span class="parameter" id="createOffer-param-audioRecv"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">audioRecv</span> = <span class="default-value">true</span>, </span><span class="parameter" id="createOffer-param-videoRecv"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">videoRecv</span> = <span class="default-value">true</span></span>})
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a></span>&gt;</span></span>
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  This method is used to create webrtc offer, sets local description on internal PeerConnection object
-It supports both style of offer creation that is plan-b and unified.
+  Creates an SDP offer and sets it as the local description.
   
 
 </dd>
@@ -326,7 +333,7 @@ It supports both style of offer creation that is plan-b and unified.
 
 </dt>
 <dd>
-  This function takes care of cleaning up all the internal stream controller and timers used to make janus_client compatible with streams and polling support
+  Disposes timers, stream controllers, transports, and media tied to this plugin.
   
 
 </dd>
@@ -339,46 +346,86 @@ It supports both style of offer creation that is plan-b and unified.
 
 </dt>
 <dd>
-  You can check whether a room exists using the exists
+  Checks whether a Janus room identified by <code>roomId</code> exists.
   
 
 </dd>
 
         <dt id="getAudioInputDevices" class="callable">
   <span class="name"><a href="../janus_client/JanusPlugin/getAudioInputDevices.html">getAudioInputDevices</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaDeviceInfo-class.html">MediaDeviceInfo</a></span>&gt;</span></span>&gt;</span></span>
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaDeviceInfo-class.html">MediaDeviceInfo</a></span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
+  Returns all available audio input devices from the underlying platform.
   
+
+</dd>
+
+        <dt id="getBitrate" class="callable">
+  <span class="name"><a href="../janus_client/JanusPlugin/getBitrate.html">getBitrate</a></span><span class="signature">(<wbr>[<span class="parameter" id="getBitrate-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Calculates the bitrate of the inbound video stream identified by <code>mid</code>.
+  
+
+</dd>
+
+        <dt id="getBitrateMeasurement" class="callable">
+  <span class="name"><a href="../janus_client/JanusPlugin/getBitrateMeasurement.html">getBitrateMeasurement</a></span><span class="signature">(<wbr>{<span class="parameter" id="getBitrateMeasurement-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span>, </span><span class="parameter" id="getBitrateMeasurement-param-kind"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">kind</span>, </span><span class="parameter" id="getBitrateMeasurement-param-direction"><span class="type-annotation"><a href="../janus_client/RtpStreamDirection.html">RtpStreamDirection</a></span> <span class="parameter-name">direction</span> = <span class="default-value">RtpStreamDirection.inbound</span>, </span><span class="parameter" id="getBitrateMeasurement-param-fallbackToFirstMatching"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">fallbackToFirstMatching</span> = <span class="default-value">true</span>, </span><span class="parameter" id="getBitrateMeasurement-param-trackId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trackId</span>, </span><span class="parameter" id="getBitrateMeasurement-param-ssrc"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">ssrc</span>, </span><span class="parameter" id="getBitrateMeasurement-param-historyKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">historyKey</span>, </span><span class="parameter" id="getBitrateMeasurement-param-where"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">where</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="getBitrateMeasurement-param-historyKeyResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">historyKeyResolver</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?</span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../janus_client/BitrateMeasurement-class.html">BitrateMeasurement</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns a strongly typed bitrate measurement that can be formatted or
+transformed as desired by the caller.
+  
+
+</dd>
+
+        <dt id="getNetworkQuality" class="callable">
+  <span class="name"><a href="../janus_client/JanusPlugin/getNetworkQuality.html">getNetworkQuality</a></span><span class="signature">(<wbr>{<span class="parameter" id="getNetworkQuality-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span>, </span><span class="parameter" id="getNetworkQuality-param-kind"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">kind</span>, </span><span class="parameter" id="getNetworkQuality-param-direction"><span class="type-annotation"><a href="../janus_client/RtpStreamDirection.html">RtpStreamDirection</a></span> <span class="parameter-name">direction</span> = <span class="default-value">RtpStreamDirection.inbound</span>, </span><span class="parameter" id="getNetworkQuality-param-fallbackToFirstMatching"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">fallbackToFirstMatching</span> = <span class="default-value">true</span>, </span><span class="parameter" id="getNetworkQuality-param-trackId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trackId</span>, </span><span class="parameter" id="getNetworkQuality-param-ssrc"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">ssrc</span>, </span><span class="parameter" id="getNetworkQuality-param-historyKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">historyKey</span>, </span><span class="parameter" id="getNetworkQuality-param-where"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">where</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="getNetworkQuality-param-historyKeyResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">historyKeyResolver</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="getNetworkQuality-param-thresholds"><span class="type-annotation"><a href="../janus_client/NetworkQualityThresholds-class.html">NetworkQualityThresholds</a></span> <span class="parameter-name">thresholds</span> = <span class="default-value">const NetworkQualityThresholds()</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../janus_client/NetworkQualitySnapshot-class.html">NetworkQualitySnapshot</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Produces a single network quality snapshot using the underlying stats.
   
 
 </dd>
 
         <dt id="getVideoInputDevices" class="callable">
   <span class="name"><a href="../janus_client/JanusPlugin/getVideoInputDevices.html">getVideoInputDevices</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaDeviceInfo-class.html">MediaDeviceInfo</a></span>&gt;</span></span>&gt;</span></span>
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaDeviceInfo-class.html">MediaDeviceInfo</a></span>&gt;</span></span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  
+  Returns all available video input devices from the underlying platform.
   
 
 </dd>
 
         <dt id="handleRemoteJsep" class="callable">
-  <span class="name"><a href="../janus_client/JanusPlugin/handleRemoteJsep.html">handleRemoteJsep</a></span><span class="signature">(<wbr><span class="parameter" id="handleRemoteJsep-param-data"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">data</span></span>)
+  <span class="name"><a href="../janus_client/JanusPlugin/handleRemoteJsep.html">handleRemoteJsep</a></span><span class="signature">(<wbr><span class="parameter" id="handleRemoteJsep-param-data"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">data</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  It allows you to set Remote Description on internal peer connection, Received from janus server
+  Applies the remote <a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a> provided by Janus to this peer connection.
   
 
 </dd>
@@ -391,34 +438,34 @@ It supports both style of offer creation that is plan-b and unified.
 
 </dt>
 <dd>
-  
+  Stops polling and disposes media resources without fully disposing the handle.
   
 
 </dd>
 
         <dt id="initDataChannel" class="callable">
-  <span class="name"><a href="../janus_client/JanusPlugin/initDataChannel.html">initDataChannel</a></span><span class="signature">(<wbr>{<span class="parameter" id="initDataChannel-param-rtcDataChannelInit"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCDataChannelInit-class.html">RTCDataChannelInit</a>?</span> <span class="parameter-name">rtcDataChannelInit</span></span>})
+  <span class="name"><a href="../janus_client/JanusPlugin/initDataChannel.html">initDataChannel</a></span><span class="signature">(<wbr>{<span class="parameter" id="initDataChannel-param-rtcDataChannelInit"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCDataChannelInit-class.html">RTCDataChannelInit</a>?</span> <span class="parameter-name">rtcDataChannelInit</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  this method Initialize data channel on handle's internal peer connection object.
-It is mainly used for Janus TextRoom and can be used for other plugins with data channel support
+  Creates the default data channel when missing for TextRoom/data usage.
   
 
 </dd>
 
         <dt id="initializeMediaDevices" class="callable">
-  <span class="name"><a href="../janus_client/JanusPlugin/initializeMediaDevices.html">initializeMediaDevices</a></span><span class="signature">(<wbr>{<span class="parameter" id="initializeMediaDevices-param-mediaConstraints"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">mediaConstraints</span>, </span><span class="parameter" id="initializeMediaDevices-param-useDisplayMediaDevices"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">useDisplayMediaDevices</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initializeMediaDevices-param-disableDevicePrediction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">disableDevicePrediction</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initializeMediaDevices-param-transceiverDirection"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/TransceiverDirection.html">TransceiverDirection</a>?</span> <span class="parameter-name">transceiverDirection</span> = <span class="default-value">TransceiverDirection.SendOnly</span>, </span><span class="parameter" id="initializeMediaDevices-param-simulcastSendEncodings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCRtpEncoding-class.html">RTCRtpEncoding</a></span>&gt;</span>?</span> <span class="parameter-name">simulcastSendEncodings</span></span>})
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span></span>
+  <span class="name"><a href="../janus_client/JanusPlugin/initializeMediaDevices.html">initializeMediaDevices</a></span><span class="signature">(<wbr>{<span class="parameter" id="initializeMediaDevices-param-mediaConstraints"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">mediaConstraints</span>, </span><span class="parameter" id="initializeMediaDevices-param-useDisplayMediaDevices"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">useDisplayMediaDevices</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initializeMediaDevices-param-disableDevicePrediction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">disableDevicePrediction</span> = <span class="default-value">false</span>, </span><span class="parameter" id="initializeMediaDevices-param-transceiverDirection"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/TransceiverDirection.html">TransceiverDirection</a>?</span> <span class="parameter-name">transceiverDirection</span> = <span class="default-value">TransceiverDirection.SendOnly</span>, </span><span class="parameter" id="initializeMediaDevices-param-simulcastSendEncodings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCRtpEncoding-class.html">RTCRtpEncoding</a></span>&gt;</span>?</span> <span class="parameter-name">simulcastSendEncodings</span>, </span><span class="parameter" id="initializeMediaDevices-param-desktopCaptureContext"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>?</span> <span class="parameter-name">desktopCaptureContext</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/MediaStream-class.html">MediaStream</a>?</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  Helper method that generates MediaStream from your device camera that will be automatically added to peer connection instance internally used by janus client
+  Initializes device media (camera, microphone, or display capture) and
+wires the resulting stream into the plugin's peer connection.
   
 
 </dd>
@@ -431,7 +478,7 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 
 </dt>
 <dd>
-  used to initialize/reinitialize entire webrtc stack if it is required for your application purpose
+  Initializes or re-initializes the internal WebRTC stack for this plugin.
   
 
 </dd>
@@ -463,14 +510,14 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 </dd>
 
         <dt id="send" class="callable">
-  <span class="name"><a href="../janus_client/JanusPlugin/send.html">send</a></span><span class="signature">(<wbr>{<span class="parameter" id="send-param-data"><span class="type-annotation">dynamic</span> <span class="parameter-name">data</span>, </span><span class="parameter" id="send-param-jsep"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.2.2+hotfix.1/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">jsep</span></span>})
+  <span class="name"><a href="../janus_client/JanusPlugin/send.html">send</a></span><span class="signature">(<wbr>{<span class="parameter" id="send-param-data"><span class="type-annotation">dynamic</span> <span class="parameter-name">data</span>, </span><span class="parameter" id="send-param-jsep"><span class="type-annotation"><a href="https://pub.dev/documentation/webrtc_interface/1.3.0/webrtc_interface/RTCSessionDescription-class.html">RTCSessionDescription</a>?</span> <span class="parameter-name">jsep</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a></span>
   </span>
   
 
 </dt>
 <dd>
-  This method is crucial for communicating with Janus Server's APIs it takes in data and optionally jsep for negotiating with webrtc peers
+  Sends a Janus <code>message</code> with optional SDP negotiation data.
   
 
 </dd>
@@ -483,7 +530,7 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 
 </dt>
 <dd>
-  Send text message on existing text room using data channel with same label as specified during initDataChannel() method call.
+  Sends a text <code>message</code> over the default data channel.
   
 
 </dd>
@@ -496,9 +543,7 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 
 </dt>
 <dd>
-  a utility method which can be used to switch camera of user device if it has more than one camera
-<code>deviceId</code> : device id of the camera you want to switch to
-<code>deviceId</code> is important for switchCamera to work in browsers.
+  Switches the active camera track to the one referenced by <code>deviceId</code>.
   
 
 </dd>
@@ -513,6 +558,32 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 <dd class="inherited">
   A string representation of this object.
   <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="watchNetworkQuality" class="callable">
+  <span class="name"><a href="../janus_client/JanusPlugin/watchNetworkQuality.html">watchNetworkQuality</a></span><span class="signature">(<wbr>{<span class="parameter" id="watchNetworkQuality-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span>, </span><span class="parameter" id="watchNetworkQuality-param-kind"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">kind</span>, </span><span class="parameter" id="watchNetworkQuality-param-direction"><span class="type-annotation"><a href="../janus_client/RtpStreamDirection.html">RtpStreamDirection</a></span> <span class="parameter-name">direction</span> = <span class="default-value">RtpStreamDirection.inbound</span>, </span><span class="parameter" id="watchNetworkQuality-param-fallbackToFirstMatching"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">fallbackToFirstMatching</span> = <span class="default-value">true</span>, </span><span class="parameter" id="watchNetworkQuality-param-trackId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trackId</span>, </span><span class="parameter" id="watchNetworkQuality-param-ssrc"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">ssrc</span>, </span><span class="parameter" id="watchNetworkQuality-param-historyKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">historyKey</span>, </span><span class="parameter" id="watchNetworkQuality-param-where"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">where</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="watchNetworkQuality-param-historyKeyResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">historyKeyResolver</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="watchNetworkQuality-param-thresholds"><span class="type-annotation"><a href="../janus_client/NetworkQualityThresholds-class.html">NetworkQualityThresholds</a></span> <span class="parameter-name">thresholds</span> = <span class="default-value">const NetworkQualityThresholds()</span>, </span><span class="parameter" id="watchNetworkQuality-param-sampleInterval"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">sampleInterval</span> = <span class="default-value">const Duration(seconds: 2)</span>, </span><span class="parameter" id="watchNetworkQuality-param-emitDistinct"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">emitDistinct</span> = <span class="default-value">true</span>, </span><span class="parameter" id="watchNetworkQuality-param-emitOnListen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">emitOnListen</span> = <span class="default-value">true</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../janus_client/NetworkQualitySnapshot-class.html">NetworkQualitySnapshot</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Continuously samples network quality and emits high-level snapshots.
+  
+
+</dd>
+
+        <dt id="watchNetworkQualityLevel" class="callable">
+  <span class="name"><a href="../janus_client/JanusPlugin/watchNetworkQualityLevel.html">watchNetworkQualityLevel</a></span><span class="signature">(<wbr>{<span class="parameter" id="watchNetworkQualityLevel-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-kind"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">kind</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-direction"><span class="type-annotation"><a href="../janus_client/RtpStreamDirection.html">RtpStreamDirection</a></span> <span class="parameter-name">direction</span> = <span class="default-value">RtpStreamDirection.inbound</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-fallbackToFirstMatching"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">fallbackToFirstMatching</span> = <span class="default-value">true</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-trackId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trackId</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-ssrc"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">ssrc</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-historyKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">historyKey</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-where"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">where</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="watchNetworkQualityLevel-param-historyKeyResolver"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">historyKeyResolver</span>(<span class="parameter" id="param-report"><span class="type-annotation">dynamic</span> <span class="parameter-name">report</span></span>)?, </span><span class="parameter" id="watchNetworkQualityLevel-param-thresholds"><span class="type-annotation"><a href="../janus_client/NetworkQualityThresholds-class.html">NetworkQualityThresholds</a></span> <span class="parameter-name">thresholds</span> = <span class="default-value">const NetworkQualityThresholds()</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-sampleInterval"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">sampleInterval</span> = <span class="default-value">const Duration(seconds: 2)</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-emitDistinct"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">emitDistinct</span> = <span class="default-value">true</span>, </span><span class="parameter" id="watchNetworkQualityLevel-param-emitOnListen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">emitOnListen</span> = <span class="default-value">true</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../janus_client/NetworkQuality.html">NetworkQuality</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convenience wrapper that emits only the <a href="../janus_client/NetworkQuality.html">NetworkQuality</a> level.
+  
 
 </dd>
 
@@ -553,7 +624,7 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client</a></li>
+    <li><a href="../janus_client/">janus_client</a></li>
     <li class="self-crumb">JanusPlugin class</li>
 </ol>
 
@@ -566,7 +637,7 @@ It is mainly used for Janus TextRoom and can be used for other plugins with data
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

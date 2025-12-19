@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusAudioBridgePlugin-class.html">JanusAudioBridgePlugin</a></li>
     <li class="self-crumb">kickParticipant method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -68,11 +65,13 @@
     </section>
     
 <section class="desc markdown">
-  <p><a href="../../janus_client/JanusAudioBridgePlugin/kickParticipant.html">kickParticipant</a></p>
-<p>If you're the administrator of a room (that is, you created it and have access to the secret) you can kick out individual participant.
-<code>roomId</code> unique numeric ID of the room to stop the forwarder from.<br>
-<code>participantId</code> unique numeric ID of the participant.<br>
-<code>secret</code> admin secret should be provided if configured.<br></p>
+  <p>Removes a participant from the room when the admin secret is provided.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>roomId</code>: Target room identifier.</li>
+<li><code>participantId</code>: Participant to remove.</li>
+<li><code>secret</code>: Room admin secret when configured.</li>
+</ul>
 </section>
 
 
@@ -99,7 +98,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusAudioBridgePlugin-class.html">JanusAudioBridgePlugin</a></li>
     <li class="self-crumb">kickParticipant method</li>
 </ol>
@@ -113,7 +112,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

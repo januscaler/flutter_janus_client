@@ -30,33 +30,41 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
-  <div id="dartdoc-main-content" class="main-content">
-    <h1>404: Something's gone wrong :-(</h1>
-    <section class="desc">
-      <p>You've tried to visit a page that doesn't exist.  Luckily this site
-         has other <a href="index.html">pages</a>.</p>
-      <p>If you were looking for something specific, try searching:
+<div id="dartdoc-main-content" class="main-content">
+  <h1>404: Something's gone wrong :-(</h1>
+  <section class="desc">
+    <p>
+      You've tried to visit a page that doesn't exist. Luckily this site has
+      other <a href="index.html">pages</a>.
+    </p>
+    <div>
+      If you were looking for something specific, try searching:
       <form class="search-body" role="search">
-        <input type="text" id="search-body" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+        <input
+          type="text"
+          id="search-body"
+          autocomplete="off"
+          disabled
+          class="form-control typeahead"
+          placeholder="Loading search..."
+        />
       </form>
-      </p>
-    </section>
-  </div> <!-- /.main-content -->
-  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+    </div>
+  </section>
+</div>
+<!-- /.main-content -->
+<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -66,21 +74,23 @@
     <li><a href="https://github.com/shivanshtalwar0/flutter_janus_client">janus_client package</a></li>
 </ol>
 
-    <h5><span class="package-name">janus_client</span> <span class="package-kind">package</span></h5>
-    <ol>
+  <h5>
+    <span class="package-name">janus_client</span>
+    <span class="package-kind">package</span>
+  </h5>
+  <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="interfaces_sip_sip_event">interfaces/sip/sip_event</a></li>
-      <li><a href="janus_client">janus_client</a></li>
+      <li><a href="interfaces_sip_sip_event/">interfaces/sip/sip_event</a></li>
+      <li><a href="janus_client/">janus_client</a></li>
 </ol>
 
-  </div>
-  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-  </div>
+</div>
+<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right"></div>
 </main>
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

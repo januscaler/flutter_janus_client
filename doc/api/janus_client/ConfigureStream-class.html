@@ -25,24 +25,21 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client.dart</a></li>
+    <li><a href="../janus_client/">janus_client.dart</a></li>
     <li class="self-crumb">ConfigureStream class</li>
   </ol>
   <div class="self-name">ConfigureStream</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -56,6 +53,9 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Represents a single remote simulcast layer configuration request.</p>
+</section>
 
 
 
@@ -63,7 +63,7 @@
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="ConfigureStream" class="callable">
+        <dt id="ConfigureStream.new" class="callable">
           <span class="name"><a href="../janus_client/ConfigureStream/ConfigureStream.html">ConfigureStream</a></span><span class="signature">({<span class="parameter" id="-param-mid"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mid</span>, </span><span class="parameter" id="-param-substream"><span class="type-annotation"><a href="../janus_client/ConfigureStreamQuality.html">ConfigureStreamQuality</a>?</span> <span class="parameter-name">substream</span>, </span><span class="parameter" id="-param-temporal"><span class="type-annotation"><a href="../janus_client/ConfigureStreamQuality.html">ConfigureStreamQuality</a>?</span> <span class="parameter-name">temporal</span>, </span><span class="parameter" id="-param-spatial_layer"><span class="type-annotation"><a href="../janus_client/ConfigureStreamQuality.html">ConfigureStreamQuality</a>?</span> <span class="parameter-name">spatial_layer</span>, </span><span class="parameter" id="-param-temporal_layer"><span class="type-annotation"><a href="../janus_client/ConfigureStreamQuality.html">ConfigureStreamQuality</a>?</span> <span class="parameter-name">temporal_layer</span>, </span><span class="parameter" id="-param-send"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">send</span>, </span><span class="parameter" id="-param-fallback"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">fallback</span>, </span><span class="parameter" id="-param-audio_level_average"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">audio_level_average</span>, </span><span class="parameter" id="-param-audio_active_packets"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">audio_active_packets</span>, </span><span class="parameter" id="-param-min_delay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">min_delay</span>, </span><span class="parameter" id="-param-max_delay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">max_delay</span></span>})</span>
         </dt>
         <dd>
@@ -73,14 +73,14 @@
           <span class="name"><a href="../janus_client/ConfigureStream/ConfigureStream.fromJson.html">ConfigureStream.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-source"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">source</span></span>)</span>
         </dt>
         <dd>
-          
+          Parses a configuration instance from JSON.
             <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="ConfigureStream.fromMap" class="callable">
           <span class="name"><a href="../janus_client/ConfigureStream/ConfigureStream.fromMap.html">ConfigureStream.fromMap</a></span><span class="signature">(<span class="parameter" id="fromMap-param-map"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span>)</span>
         </dt>
         <dd>
-          
+          Builds a <a href="../janus_client/ConfigureStream-class.html">ConfigureStream</a> from a Janus plugindata map.
             <div class="constructor-modifier features">factory</div>
         </dd>
     </dl>
@@ -277,7 +277,7 @@
 
 </dt>
 <dd>
-  
+  Serialises this configuration to JSON for storage/debugging.
   
 
 </dd>
@@ -290,7 +290,7 @@
 
 </dt>
 <dd>
-  
+  Converts this configuration into the Janus wire-format map, omitting nulls.
   
 
 </dd>
@@ -345,7 +345,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client</a></li>
+    <li><a href="../janus_client/">janus_client</a></li>
     <li class="self-crumb">ConfigureStream class</li>
 </ol>
 
@@ -358,7 +358,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

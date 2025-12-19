@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">sendData method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -66,8 +63,9 @@
     </section>
     
 <section class="desc markdown">
-  <p>Send text message on existing text room using data channel with same label as specified during initDataChannel() method call.</p>
-<p>for now janus text room only supports text as string although with normal data channel api we can send blob or Uint8List if we want.</p>
+  <p>Sends a text <code>message</code> over the default data channel.</p>
+<p>Ensure <a href="../../janus_client/JanusPlugin/initDataChannel.html">initDataChannel</a> has been invoked and the channel is open before
+calling this helper. Throws if the peer connection or channel is missing.</p>
 </section>
 
 
@@ -75,22 +73,19 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; sendData(String message) async {
-  &#47;&#47; if (message != null) {
   if (webRTCHandle!.peerConnection != null) {
-    this._context._logger.finest(&#39;before send RTCDataChannelMessage&#39;);
+    _context._logger.finest(&#39;before send RTCDataChannelMessage&#39;);
     if (webRTCHandle!.dataChannel[_context._dataChannelDefaultLabel] == null) {
       throw Exception(&quot;You Must  call initDataChannel method! before you can send any data channel message&quot;);
     }
     RTCDataChannel dataChannel = webRTCHandle!.dataChannel[_context._dataChannelDefaultLabel]!;
     if (dataChannel.state == RTCDataChannelState.RTCDataChannelOpen) {
-      return await dataChannel.send(RTCDataChannelMessage(message));
+      await dataChannel.send(RTCDataChannelMessage(message));
+      return;
     }
   } else {
     throw Exception(&quot;You Must Initialize Peer Connection followed by initDataChannel()&quot;);
   }
-  &#47;&#47; } else {
-  &#47;&#47;   throw Exception(&quot;message must be provided!&quot;);
-  &#47;&#47; }
 }</code></pre>
 </section>
 
@@ -105,7 +100,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">sendData method</li>
 </ol>
@@ -119,7 +114,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

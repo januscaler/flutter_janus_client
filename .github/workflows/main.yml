@@ -1,30 +1,65 @@
-name: Flutter Web
+name: flutter-web-and-docs
+
 on:
   push:
     branches:
       - demo_v2
-  workflow_dispatch:  # This will allow the workflow to be triggered manually
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy
+    name: Build web demo and docs
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the source code
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Set up Flutter
-      - uses: subosito/flutter-action@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: stable
-          
-      # Enable Flutter web support
-      - run: cd example && flutter pub get && flutter build web --release --base-href "/flutter_janus_client/"
-  
-      # Deploy to GitHub Pages
+
+      - name: Activate dartdoc
+        run: flutter pub global activate dartdoc
+
+      - name: Fetch dependencies
+        run: |
+          flutter pub get
+          cd example
+          flutter pub get
+
+      - name: Build Flutter web demo
+        run: |
+          cd example
+          flutter build web --release --base-href "/flutter_janus_client/demo/"
+
+      - name: Generate API documentation
+        run: |
+          export PATH="$HOME/.pub-cache/bin:$PATH"
+          dartdoc
+
+      - name: Prepare publish directory
+        run: |
+          mkdir -p publish/demo publish/docs
+          cp -r example/build/web/* publish/demo/
+          cp -r doc/api/* publish/docs/
+
+      - name: Upload demo artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: flutter-web-demo
+          path: publish/demo
+
+      - name: Upload docs artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-docs
+          path: publish/docs
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./example/build/web
+          publish_dir: ./publish
+          destination_dir: .

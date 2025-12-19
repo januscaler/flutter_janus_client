@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the JanusEchoTestPlugin constructor from Class JanusEchoTestPlugin from the janus_client library, for the Dart programming language.">
-  <title>JanusEchoTestPlugin constructor - JanusEchoTestPlugin - janus_client library - Dart API</title>
+  <meta name="description" content="API docs for the JanusEchoTestPlugin.new constructor from Class JanusEchoTestPlugin from the janus_client library, for the Dart programming language.">
+  <title>JanusEchoTestPlugin.new constructor - JanusEchoTestPlugin - janus_client library - Dart API</title>
 
 
   
@@ -25,25 +25,22 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusEchoTestPlugin-class.html">JanusEchoTestPlugin</a></li>
-    <li class="self-crumb">JanusEchoTestPlugin constructor</li>
+    <li class="self-crumb">JanusEchoTestPlugin.new constructor</li>
   </ol>
-  <div class="self-name">JanusEchoTestPlugin</div>
+  <div class="self-name">JanusEchoTestPlugin.new</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
   <div
@@ -70,7 +67,12 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">JanusEchoTestPlugin({handleId, context, transport, session})
-    : super(context: context, handleId: handleId, plugin: JanusPlugins.ECHO_TEST, session: session, transport: transport);</code></pre>
+    : super(
+          context: context,
+          handleId: handleId,
+          plugin: JanusPlugins.ECHO_TEST,
+          session: session,
+          transport: transport);</code></pre>
 </section>
 
 
@@ -84,9 +86,9 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusEchoTestPlugin-class.html">JanusEchoTestPlugin</a></li>
-    <li class="self-crumb">JanusEchoTestPlugin constructor</li>
+    <li class="self-crumb">JanusEchoTestPlugin.new constructor</li>
 </ol>
 
     <h5>JanusEchoTestPlugin class</h5>
@@ -98,7 +100,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

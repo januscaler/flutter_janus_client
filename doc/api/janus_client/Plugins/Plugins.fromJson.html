@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/Plugins-class.html">Plugins</a></li>
     <li class="self-crumb">Plugins.fromJson constructor</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
   <div
@@ -67,16 +64,36 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Plugins.fromJson(dynamic json) {
-  _januspluginaudiobridge = json[&#39;janus.plugin.audiobridge&#39;] != null ? JanusPluginAudiobridge.fromJson(json[&#39;janus.plugin.audiobridge&#39;]) : null;
-  _januspluginrecordplay = json[&#39;janus.plugin.recordplay&#39;] != null ? JanusPluginRecordplay.fromJson(json[&#39;janus.plugin.recordplay&#39;]) : null;
-  _janusplugintextroom = json[&#39;janus.plugin.textroom&#39;] != null ? JanusPluginTextroom.fromJson(json[&#39;janus.plugin.textroom&#39;]) : null;
-  _januspluginnosip = json[&#39;janus.plugin.nosip&#39;] != null ? JanusPluginNosip.fromJson(json[&#39;janus.plugin.nosip&#39;]) : null;
-  _januspluginvoicemail = json[&#39;janus.plugin.voicemail&#39;] != null ? JanusPluginVoicemail.fromJson(json[&#39;janus.plugin.voicemail&#39;]) : null;
-  _januspluginsip = json[&#39;janus.plugin.sip&#39;] != null ? JanusPluginSip.fromJson(json[&#39;janus.plugin.sip&#39;]) : null;
-  _januspluginvideocall = json[&#39;janus.plugin.videocall&#39;] != null ? JanusPluginVideocall.fromJson(json[&#39;janus.plugin.videocall&#39;]) : null;
-  _januspluginstreaming = json[&#39;janus.plugin.streaming&#39;] != null ? JanusPluginStreaming.fromJson(json[&#39;janus.plugin.streaming&#39;]) : null;
-  _januspluginechotest = json[&#39;janus.plugin.echotest&#39;] != null ? JanusPluginEchotest.fromJson(json[&#39;janus.plugin.echotest&#39;]) : null;
-  _januspluginvideoroom = json[&#39;janus.plugin.videoroom&#39;] != null ? JanusPluginVideoroom.fromJson(json[&#39;janus.plugin.videoroom&#39;]) : null;
+  _januspluginaudiobridge = json[&#39;janus.plugin.audiobridge&#39;] != null
+      ? JanusPluginAudiobridge.fromJson(json[&#39;janus.plugin.audiobridge&#39;])
+      : null;
+  _januspluginrecordplay = json[&#39;janus.plugin.recordplay&#39;] != null
+      ? JanusPluginRecordplay.fromJson(json[&#39;janus.plugin.recordplay&#39;])
+      : null;
+  _janusplugintextroom = json[&#39;janus.plugin.textroom&#39;] != null
+      ? JanusPluginTextroom.fromJson(json[&#39;janus.plugin.textroom&#39;])
+      : null;
+  _januspluginnosip = json[&#39;janus.plugin.nosip&#39;] != null
+      ? JanusPluginNosip.fromJson(json[&#39;janus.plugin.nosip&#39;])
+      : null;
+  _januspluginvoicemail = json[&#39;janus.plugin.voicemail&#39;] != null
+      ? JanusPluginVoicemail.fromJson(json[&#39;janus.plugin.voicemail&#39;])
+      : null;
+  _januspluginsip = json[&#39;janus.plugin.sip&#39;] != null
+      ? JanusPluginSip.fromJson(json[&#39;janus.plugin.sip&#39;])
+      : null;
+  _januspluginvideocall = json[&#39;janus.plugin.videocall&#39;] != null
+      ? JanusPluginVideocall.fromJson(json[&#39;janus.plugin.videocall&#39;])
+      : null;
+  _januspluginstreaming = json[&#39;janus.plugin.streaming&#39;] != null
+      ? JanusPluginStreaming.fromJson(json[&#39;janus.plugin.streaming&#39;])
+      : null;
+  _januspluginechotest = json[&#39;janus.plugin.echotest&#39;] != null
+      ? JanusPluginEchotest.fromJson(json[&#39;janus.plugin.echotest&#39;])
+      : null;
+  _januspluginvideoroom = json[&#39;janus.plugin.videoroom&#39;] != null
+      ? JanusPluginVideoroom.fromJson(json[&#39;janus.plugin.videoroom&#39;])
+      : null;
 }</code></pre>
 </section>
 
@@ -91,7 +108,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/Plugins-class.html">Plugins</a></li>
     <li class="self-crumb">Plugins.fromJson constructor</li>
 </ol>
@@ -105,7 +122,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

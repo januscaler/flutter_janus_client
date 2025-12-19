@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusAudioBridgePlugin-class.html">JanusAudioBridgePlugin</a></li>
     <li class="self-crumb">editRoom method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -72,14 +69,17 @@
     </section>
     
 <section class="desc markdown">
-  <p>Once a room has been created, you can still edit some (but not all) of its properties using the edit request. This allows you to modify the room description, secret, pin and whether it's private or not: you won't be able to modify other more static properties, like the room ID, the sampling rate, the extensions-related stuff and so on. If you're interested in changing the ACL, instead, check the allowed message.<br><br>
-<code>roomId</code> : unique numeric ID of the room to edit<br>
-<code>secret</code> : room secret, mandatory if configured<br>
-<code>newDescription</code> : new pretty name of the room, optional<br>
-<code>newSecret</code> : new password required to edit/destroy the room, optional<br>
-<code>newPin</code> : new password required to join the room, optional<br>
-<code>newIsPrivate</code> : true|false, whether the room should appear in a list request<br>
-<code>permanent</code> : true|false, whether the room should be also removed from the config file, default=false</p>
+  <p>Updates mutable metadata for an existing audio bridge room.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>roomId</code>: Numeric identifier of the target room.</li>
+<li><code>secret</code>: Current room secret when one is configured.</li>
+<li><code>newDescription</code>: Updated display name.</li>
+<li><code>newSecret</code>: New admin secret for destructive operations.</li>
+<li><code>newPin</code>: New pin required for participants to join.</li>
+<li><code>newIsPrivate</code>: Hides the room from list queries when <code>true</code>.</li>
+<li><code>permanent</code>: Persists changes back to the plugin configuration.</li>
+</ul>
 </section>
 
 
@@ -115,7 +115,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusAudioBridgePlugin-class.html">JanusAudioBridgePlugin</a></li>
     <li class="self-crumb">editRoom method</li>
 </ol>
@@ -129,7 +129,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

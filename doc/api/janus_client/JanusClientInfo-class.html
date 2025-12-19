@@ -25,24 +25,21 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client.dart</a></li>
+    <li><a href="../janus_client/">janus_client.dart</a></li>
     <li class="self-crumb">JanusClientInfo class</li>
   </ol>
   <div class="self-name">JanusClientInfo</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -63,7 +60,7 @@
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="JanusClientInfo" class="callable">
+        <dt id="JanusClientInfo.new" class="callable">
           <span class="name"><a href="../janus_client/JanusClientInfo/JanusClientInfo.html">JanusClientInfo</a></span><span class="signature">({<span class="parameter" id="-param-janus"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">janus</span>, </span><span class="parameter" id="-param-transaction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">transaction</span>, </span><span class="parameter" id="-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="-param-version"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">version</span>, </span><span class="parameter" id="-param-versionString"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">versionString</span>, </span><span class="parameter" id="-param-author"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">author</span>, </span><span class="parameter" id="-param-commithash"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">commithash</span>, </span><span class="parameter" id="-param-compiletime"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">compiletime</span>, </span><span class="parameter" id="-param-logtostdout"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">logtostdout</span>, </span><span class="parameter" id="-param-logtofile"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">logtofile</span>, </span><span class="parameter" id="-param-dataChannels"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">dataChannels</span>, </span><span class="parameter" id="-param-acceptingnewsessions"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">acceptingnewsessions</span>, </span><span class="parameter" id="-param-sessiontimeout"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">sessiontimeout</span>, </span><span class="parameter" id="-param-reclaimsessiontimeout"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">reclaimsessiontimeout</span>, </span><span class="parameter" id="-param-candidatestimeout"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">candidatestimeout</span>, </span><span class="parameter" id="-param-servername"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">servername</span>, </span><span class="parameter" id="-param-localip"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">localip</span>, </span><span class="parameter" id="-param-ipv6"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">ipv6</span>, </span><span class="parameter" id="-param-ipv6linklocal"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">ipv6linklocal</span>, </span><span class="parameter" id="-param-icelite"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">icelite</span>, </span><span class="parameter" id="-param-icetcp"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">icetcp</span>, </span><span class="parameter" id="-param-icenomination"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icenomination</span>, </span><span class="parameter" id="-param-icekeepaliveconncheck"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">icekeepaliveconncheck</span>, </span><span class="parameter" id="-param-fulltrickle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">fulltrickle</span>, </span><span class="parameter" id="-param-mdnsenabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">mdnsenabled</span>, </span><span class="parameter" id="-param-minnackqueue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">minnackqueue</span>, </span><span class="parameter" id="-param-nackoptimizations"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">nackoptimizations</span>, </span><span class="parameter" id="-param-twccperiod"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">twccperiod</span>, </span><span class="parameter" id="-param-dtlsmtu"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">dtlsmtu</span>, </span><span class="parameter" id="-param-staticeventloops"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">staticeventloops</span>, </span><span class="parameter" id="-param-loopindication"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">loopindication</span>, </span><span class="parameter" id="-param-apiSecret"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">apiSecret</span>, </span><span class="parameter" id="-param-authToken"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">authToken</span>, </span><span class="parameter" id="-param-eventHandlers"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">eventHandlers</span>, </span><span class="parameter" id="-param-opaqueidInApi"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">opaqueidInApi</span>, </span><span class="parameter" id="-param-dependencies"><span class="type-annotation"><a href="../janus_client/Dependencies-class.html">Dependencies</a>?</span> <span class="parameter-name">dependencies</span>, </span><span class="parameter" id="-param-transports"><span class="type-annotation"><a href="../janus_client/Transports-class.html">Transports</a>?</span> <span class="parameter-name">transports</span>, </span><span class="parameter" id="-param-events"><span class="type-annotation">dynamic</span> <span class="parameter-name">events</span>, </span><span class="parameter" id="-param-loggers"><span class="type-annotation">dynamic</span> <span class="parameter-name">loggers</span>, </span><span class="parameter" id="-param-plugins"><span class="type-annotation"><a href="../janus_client/Plugins-class.html">Plugins</a>?</span> <span class="parameter-name">plugins</span></span>})</span>
         </dt>
         <dd>
@@ -685,7 +682,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">janus_client</a></li>
-    <li><a href="../janus_client">janus_client</a></li>
+    <li><a href="../janus_client/">janus_client</a></li>
     <li class="self-crumb">JanusClientInfo class</li>
 </ol>
 
@@ -698,7 +695,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusSession-class.html">JanusSession</a></li>
     <li class="self-crumb">attach&lt;<wbr><span class="type-parameter">T extends JanusPlugin</span>&gt; method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -78,28 +75,62 @@
   JanusPlugin plugin;
   int? handleId;
   String transaction = getUuid().v4();
-  Map&lt;String, dynamic&gt; request = {&quot;janus&quot;: &quot;attach&quot;, &quot;transaction&quot;: transaction, ..._context._apiMap, ..._context._tokenMap};
+  Map&lt;String, dynamic&gt; request = {
+    &quot;janus&quot;: &quot;attach&quot;,
+    &quot;transaction&quot;: transaction,
+    ..._context._apiMap,
+    ..._context._tokenMap
+  };
   if (opaqueId != null) {
     request[&quot;opaque_id&quot;] = opaqueId;
   }
   request[&quot;session_id&quot;] = sessionId;
   Map&lt;String, dynamic&gt;? response;
   if (T == JanusVideoRoomPlugin) {
-    plugin = JanusVideoRoomPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusVideoRoomPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusVideoCallPlugin) {
-    plugin = JanusVideoCallPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusVideoCallPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusStreamingPlugin) {
-    plugin = JanusStreamingPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusStreamingPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusAudioBridgePlugin) {
-    plugin = JanusAudioBridgePlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusAudioBridgePlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusTextRoomPlugin) {
-    plugin = JanusTextRoomPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusTextRoomPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusEchoTestPlugin) {
-    plugin = JanusEchoTestPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusEchoTestPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else if (T == JanusSipPlugin) {
-    plugin = JanusSipPlugin(transport: _transport, context: _context, handleId: handleId, session: this);
+    plugin = JanusSipPlugin(
+        transport: _transport,
+        context: _context,
+        handleId: handleId,
+        session: this);
   } else {
-    throw UnimplementedError(&#39;&#39;&#39;This Plugin is not defined kindly refer to Janus Server Docs
+    throw UnimplementedError(
+        &#39;&#39;&#39;This Plugin is not defined kindly refer to Janus Server Docs
     make sure you specify the type of plugin you want to attach like session.attach&lt;JanusVideoRoomPlugin&gt;();
     &#39;&#39;&#39;);
   }
@@ -110,20 +141,22 @@
     RestJanusTransport rest = (_transport as RestJanusTransport);
     response = (await rest.post(request)) as Map&lt;String, dynamic&gt;?;
     _context._logger.fine(response);
-    if (response != null &amp;&amp; response.containsKey(&#39;janus&#39;) &amp;&amp; response.containsKey(&#39;data&#39;)) {
+    if (response != null &amp;&amp;
+        response.containsKey(&#39;janus&#39;) &amp;&amp;
+        response.containsKey(&#39;data&#39;)) {
       handleId = response[&#39;data&#39;][&#39;id&#39;];
       rest.sessionId = sessionId;
     } else {
       throw &quot;Network error or janus server not running&quot;;
     }
   } else if (_transport is WebSocketJanusTransport) {
-    _context._logger.info(&#39;using web socket transport for creating plugin handle&#39;);
+    _context._logger
+        .info(&#39;using web socket transport for creating plugin handle&#39;);
     WebSocketJanusTransport ws = (_transport as WebSocketJanusTransport);
     if (!ws.isConnected) {
       ws.connect();
     }
-    ws.sink!.add(stringify(request));
-    response = parse(await ws.stream.firstWhere((element) =&gt; (parse(element)[&#39;transaction&#39;] == transaction)));
+    response = await ws.send(request, handleId: null);
     if (response!.containsKey(&#39;janus&#39;) &amp;&amp; response.containsKey(&#39;data&#39;)) {
       handleId = response[&#39;data&#39;][&#39;id&#39;] as int?;
       _context._logger.fine(response);
@@ -134,7 +167,8 @@
   try {
     await plugin._init();
   } on MissingPluginException {
-    _context._logger.info(&#39;Platform exception: i believe you are trying in unit tests, platform specific api not accessible&#39;);
+    _context._logger.info(
+        &#39;Platform exception: i believe you are trying in unit tests, platform specific api not accessible&#39;);
   }
   plugin.onCreate();
   return plugin as T;
@@ -152,7 +186,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusSession-class.html">JanusSession</a></li>
     <li class="self-crumb">attach&lt;<wbr><span class="type-parameter">T extends JanusPlugin</span>&gt; method</li>
 </ol>
@@ -166,7 +200,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>

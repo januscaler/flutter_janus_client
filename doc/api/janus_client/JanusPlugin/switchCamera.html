@@ -25,7 +25,7 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client.dart</a></li>
+    <li><a href="../../janus_client/">janus_client.dart</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">switchCamera method</li>
   </ol>
@@ -33,17 +33,14 @@
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
-  <div class="toggle" id="theme-button" title="Toggle brightness">
-    <label for="theme">
-      <input type="checkbox" id="theme" value="light-theme">
-      <span id="dark-theme-button" class="material-symbols-outlined">
-        dark_mode
-      </span>
-      <span id="light-theme-button" class="material-symbols-outlined">
-        light_mode
-      </span>
-    </label>
-  </div>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
 </header>
 <main>
 <div
@@ -66,9 +63,9 @@
     </section>
     
 <section class="desc markdown">
-  <p>a utility method which can be used to switch camera of user device if it has more than one camera
-<code>deviceId</code> : device id of the camera you want to switch to
-<code>deviceId</code> is important for switchCamera to work in browsers.</p>
+  <p>Switches the active camera track to the one referenced by <code>deviceId</code>.</p>
+<p>When <code>deviceId</code> is omitted on web, the helper defaults to the last device
+returned by <a href="../../janus_client/JanusPlugin/getVideoInputDevices.html">getVideoInputDevices</a>, which is often the rear-facing camera.</p>
 </section>
 
 
@@ -122,7 +119,7 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">janus_client</a></li>
-    <li><a href="../../janus_client">janus_client</a></li>
+    <li><a href="../../janus_client/">janus_client</a></li>
     <li><a href="../../janus_client/JanusPlugin-class.html">JanusPlugin</a></li>
     <li class="self-crumb">switchCamera method</li>
 </ol>
@@ -136,7 +133,7 @@
 <footer>
   <span class="no-break">
     janus_client
-      2.3.6
+      2.4.2
   </span>
   
 </footer>
