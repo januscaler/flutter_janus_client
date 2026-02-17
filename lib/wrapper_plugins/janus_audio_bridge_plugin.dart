@@ -336,7 +336,7 @@ class JanusAudioBridgePlugin extends JanusPlugin {
         typedEvent.event.plugindata?.data = AudioBridgeJoinedEvent.fromJson(data);
         _typedMessagesSink?.add(typedEvent);
       } else if (data["audiobridge"] == "event") {
-        if (data["participants"] != null) {
+        if (data["participants"] != null || data["participant"] != null) {
           typedEvent.event.plugindata?.data = AudioBridgeNewParticipantsEvent.fromJson(data);
           _typedMessagesSink?.add(typedEvent);
         } else if (data["result"] == "ok") {
