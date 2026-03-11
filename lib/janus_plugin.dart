@@ -541,6 +541,27 @@ class JanusPlugin {
     mediaStats = JanusStreamStats(peerConnectionProvider: () => webRTCHandle?.peerConnection);
   }
 
+  /// Builds a REST polling URI by preserving the provided base endpoint path
+  /// and appending only the `sessionId` segment.
+  static Uri buildPollingUri({
+    required String baseUrl,
+    required int sessionId,
+    required Map<String, String> queryParameters,
+  }) {
+    final baseUri = Uri.parse(baseUrl);
+    final mergedQueryParameters = <String, String>{
+      ...baseUri.queryParameters,
+      ...queryParameters,
+    };
+    return baseUri.replace(
+      pathSegments: <String>[
+        ...baseUri.pathSegments.where((segment) => segment.isNotEmpty),
+        sessionId.toString(),
+      ],
+      queryParameters: mergedQueryParameters.isEmpty ? null : mergedQueryParameters,
+    );
+  }
+
   /// Initializes or re-initializes the internal WebRTC stack for this plugin.
   ///
   /// The method expects `_webRtcConfiguration` to be populated via [_init] and
@@ -756,7 +777,12 @@ class JanusPlugin {
       if (_context._apiSecret != null) {
         queryParameters["apisecret"] = _context._apiSecret!;
       }
-      var response = (await http.get(Uri.https(extractDomainFromUrl(_transport!.url!), "janus/" + _session!.sessionId.toString(), queryParameters)));
+      final pollingUri = JanusPlugin.buildPollingUri(
+        baseUrl: _transport!.url!,
+        sessionId: _session!.sessionId!,
+        queryParameters: queryParameters,
+      );
+      var response = (await http.get(pollingUri));
       if (response.statusCode != 200 || response.body.isEmpty) {
         var errorMessage = "polling is failed from janus with error code : ${response.statusCode} , header : ${response.headers}";
         print(response.body);

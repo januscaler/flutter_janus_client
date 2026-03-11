@@ -1,3 +1,8 @@
+## 2.4.3
+
+- Fixed REST polling URL construction to preserve the configured transport base path instead of forcing `/janus/{sessionId}`.
+- Added `JanusPlugin.buildPollingUri` and tests to verify custom base paths, trailing slash normalization, and query parameter merging.
+
 ## 2.4.2
 
 - Introduced `JanusStreamStats` with customizable bitrate and network quality helpers (inbound and outbound).
