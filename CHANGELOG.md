@@ -1,3 +1,7 @@
+## 2.4.3
+- Added `disposeStream` parameter to `hangup` methods across all wrapper plugins (VideoRoom, VideoCall, AudioBridge, SIP) to allow flexible media resource cleanup without necessarily disposing the entire plugin handle.
+- Upgraded flutter_webrtc to version 1.4.0
+
 ## 2.4.2
 
 - Introduced `JanusStreamStats` with customizable bitrate and network quality helpers (inbound and outbound).

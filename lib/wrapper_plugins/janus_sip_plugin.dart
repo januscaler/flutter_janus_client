@@ -110,8 +110,10 @@ class JanusSipPlugin extends JanusPlugin {
   /// Parameters:
   /// - [headers]: Extra headers attached to the BYE request.
   Future<void> hangup({
+    bool disposeStream = true,
     Map<String, dynamic>? headers,
   }) async {
+    super.hangup(disposeStream: disposeStream);
     var payload = {"request": "hangup", "headers": headers}..removeWhere((key, value) => value == null);
     JanusEvent response = JanusEvent.fromJson(await this.send(data: payload));
     JanusError.throwErrorFromEvent(response);

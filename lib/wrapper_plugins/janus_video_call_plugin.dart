@@ -53,10 +53,10 @@ class JanusVideoCallPlugin extends JanusPlugin {
   }
 
   /// Terminates the current call and notifies the remote peer.
-  Future<void> hangup() async {
-    await super.hangup();
+  Future<void> hangup({bool disposeStream = true}) async {
+    await super.hangup(disposeStream: disposeStream);
     await this.send(data: {"request": "hangup"});
-    dispose();
+    await dispose();
   }
 
   bool _onCreated = false;
