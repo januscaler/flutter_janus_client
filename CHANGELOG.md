@@ -1,4 +1,3 @@
-
 ## 2.4.4
 
 - Fixed REST polling URL construction to preserve the configured transport base path instead of forcing `/janus/{sessionId}`.
