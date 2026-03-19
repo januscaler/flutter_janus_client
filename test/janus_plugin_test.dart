@@ -192,4 +192,36 @@ void main() async {
       }
     });
   });
+
+  group('JanusPlugin.buildPollingUri', () {
+    test('keeps custom base path and appends session id', () {
+      final uri = JanusPlugin.buildPollingUri(
+        baseUrl: 'https://example.com/api/video/janus',
+        sessionId: 12345,
+        queryParameters: {'rid': '1'},
+      );
+
+      expect(uri.toString(), 'https://example.com/api/video/janus/12345?rid=1');
+    });
+
+    test('normalizes trailing slash in base endpoint', () {
+      final uri = JanusPlugin.buildPollingUri(
+        baseUrl: 'https://example.com/custom/path/',
+        sessionId: 77,
+        queryParameters: {'rid': '2'},
+      );
+
+      expect(uri.toString(), 'https://example.com/custom/path/77?rid=2');
+    });
+
+    test('preserves existing query parameters from base url', () {
+      final uri = JanusPlugin.buildPollingUri(
+        baseUrl: 'https://example.com/custom/path?token=abc',
+        sessionId: 88,
+        queryParameters: {'rid': '3'},
+      );
+
+      expect(uri.toString(), 'https://example.com/custom/path/88?token=abc&rid=3');
+    });
+  });
 }
