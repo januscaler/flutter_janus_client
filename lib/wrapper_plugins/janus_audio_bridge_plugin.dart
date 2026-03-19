@@ -314,8 +314,8 @@ class JanusAudioBridgePlugin extends JanusPlugin {
   bool _onCreated = false;
 
   /// Sends a `leave` request after performing the base hangup cleanup.
-  Future<void> hangup() async {
-    await super.hangup();
+  Future<void> hangup({bool disposeStream = true}) async {
+    await super.hangup(disposeStream: disposeStream);
     await this.send(data: {"request": "leave"});
   }
 

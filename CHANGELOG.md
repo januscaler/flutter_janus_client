@@ -1,7 +1,13 @@
-## 2.4.3
+
+## 2.4.4
 
 - Fixed REST polling URL construction to preserve the configured transport base path instead of forcing `/janus/{sessionId}`.
 - Added `JanusPlugin.buildPollingUri` and tests to verify custom base paths, trailing slash normalization, and query parameter merging.
+
+## 2.4.3
+
+- Added `disposeStream` parameter to `hangup` methods across all wrapper plugins (VideoRoom, VideoCall, AudioBridge, SIP) to allow flexible media resource cleanup without necessarily disposing the entire plugin handle.
+- Upgraded flutter_webrtc to version 1.4.0
 
 ## 2.4.2
 

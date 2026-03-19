@@ -319,8 +319,8 @@ class JanusVideoRoomPlugin extends JanusPlugin {
   }
 
   /// Tears down the subscriber connection and sends a `leave` request.
-  Future<void> hangup() async {
-    await super.hangup();
+  Future<void> hangup({bool disposeStream = true}) async {
+    await super.hangup(disposeStream: disposeStream);
     await this.send(data: {"request": "leave"});
   }
 
