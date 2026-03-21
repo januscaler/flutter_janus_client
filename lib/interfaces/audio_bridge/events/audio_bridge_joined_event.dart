@@ -108,6 +108,9 @@ class AudioBridgeNewParticipantsEvent extends AudioBridgeEvent {
       json['participants'].forEach((v) {
         participants?.add(AudioBridgeParticipants.fromJson(v));
       });
+    } else if (json['participant'] != null) {
+      // Handle single participant (singular form)
+      participants = [AudioBridgeParticipants.fromJson(json['participant'])];
     }
   }
 }
