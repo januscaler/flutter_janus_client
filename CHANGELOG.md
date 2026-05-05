@@ -1,3 +1,6 @@
+## 2.4.4-dev.1
+- Upgraded to self hosted flutter-webrtc instead of pub.dev
+
 ## 2.4.4
 
 - Fixed REST polling URL construction to preserve the configured transport base path instead of forcing `/janus/{sessionId}`.

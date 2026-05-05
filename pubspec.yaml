@@ -1,6 +1,6 @@
 name: janus_client
 description: A feature rich Janus Webrtc package
-version: 2.4.3
+version: 2.4.4-dev.1
 homepage: https://github.com/shivanshtalwar0/flutter_janus_client
 
 environment:
@@ -17,7 +17,10 @@ dependencies:
     sdk: flutter
   flutter:
     sdk: flutter
-  flutter_webrtc: ^1.4.0 # Updated to latest compatible version
+  flutter_webrtc: 
+    git: 
+      url: https://github.com/januscaler/flutter-webrtc.git
+      ref: 960f45a57285b0c89f44c1ebf998b71905b86371
   path_provider: ^2.1.5
   http: ^1.6.0
   web_socket_channel: ^3.0.3

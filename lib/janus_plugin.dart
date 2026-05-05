@@ -1199,9 +1199,12 @@ class JanusPlugin {
   /// Creates an SDP offer and sets it as the local description.
   ///
   /// Supports both Plan-B and Unified Plan flows based on the internal flags.
-  Future<RTCSessionDescription> createOffer({bool audioRecv = true, bool videoRecv = true}) async {
+  Future<RTCSessionDescription> createOffer({bool audioRecv = true, bool videoRecv = true, bool iceRestart = false}) async {
     dynamic offerOptions;
     offerOptions = {"offerToReceiveAudio": audioRecv, "offerToReceiveVideo": videoRecv};
+    if(iceRestart){
+      offerOptions['iceRestart'] = true;
+    }
     RTCSessionDescription offer = await webRTCHandle!.peerConnection!.createOffer(offerOptions ?? {});
     await webRTCHandle!.peerConnection!.setLocalDescription(offer);
     return offer;
