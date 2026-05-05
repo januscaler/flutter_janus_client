@@ -20,7 +20,7 @@ dependencies:
   flutter_webrtc: 
     git: 
       url: https://github.com/januscaler/flutter-webrtc.git
-      ref: 960f45a57285b0c89f44c1ebf998b71905b86371
+      ref: main
   path_provider: ^2.1.5
   http: ^1.6.0
   web_socket_channel: ^3.0.3
