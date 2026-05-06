@@ -133,6 +133,10 @@ part './interfaces/sip/events/sip_calling_event.dart';
 
 part './widgets/screen_select.dart';
 
+part './widgets/screen_select_compact.dart';
+
+part './widgets/screen_select_sidebar.dart';
+
 class JanusClient {
   late JanusTransport _transport;
   String? _apiSecret;

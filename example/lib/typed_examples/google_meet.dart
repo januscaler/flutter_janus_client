@@ -7,6 +7,13 @@ import 'package:logging/logging.dart';
 
 import '../util.dart';
 
+/// Desktop screen/window picker layout for [JanusPlugin.initializeMediaDevices].
+enum DesktopPickerStyle {
+  defaultM3,
+  compact,
+  sidebar,
+}
+
 const String _kLocalRendererId = 'local';
 const String _kLocalScreenRendererId = 'localScreenShare';
 
@@ -305,6 +312,30 @@ class _VideoRoomState extends State<GoogleMeet> {
 
   VideoRoomPluginStateManager videoState = VideoRoomPluginStateManager();
 
+  DesktopPickerStyle _pickerStyle = DesktopPickerStyle.defaultM3;
+
+  WidgetBuilder _pickerBuilder() {
+    switch (_pickerStyle) {
+      case DesktopPickerStyle.defaultM3:
+        return (_) => const ScreenSelectDialog();
+      case DesktopPickerStyle.compact:
+        return (_) => const CompactScreenSelectDialog();
+      case DesktopPickerStyle.sidebar:
+        return (_) => const SidebarScreenSelectDialog();
+    }
+  }
+
+  String _pickerStyleLabel(DesktopPickerStyle s) {
+    switch (s) {
+      case DesktopPickerStyle.defaultM3:
+        return 'Default (Material 3)';
+      case DesktopPickerStyle.compact:
+        return 'Compact';
+      case DesktopPickerStyle.sidebar:
+        return 'Sidebar';
+    }
+  }
+
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
@@ -336,7 +367,7 @@ class _VideoRoomState extends State<GoogleMeet> {
   }
 
   initialize() async {
-    ws = WebSocketJanusTransport(url: servermap['janus_ws']);
+    ws = WebSocketJanusTransport(url: servermap['janus_ws_meetecho']);
     client = JanusClient(
         transport: ws!,
         withCredentials: true,
@@ -611,10 +642,29 @@ class _VideoRoomState extends State<GoogleMeet> {
     });
     await localScreenSharingRenderer.init(setState);
     localScreenSharingRenderer.publisherId = myId.toString();
-    localScreenSharingRenderer.mediaStream = await screenPlugin?.initializeMediaDevices(mediaConstraints: {
-      'video': {'width': 1920, 'height': 1080},
-      'audio': true
-    }, useDisplayMediaDevices: true);
+    localScreenSharingRenderer.mediaStream = await screenPlugin?.initializeMediaDevices(
+      mediaConstraints: {
+        'video': {'width': 1920, 'height': 1080},
+        'audio': true,
+      },
+      useDisplayMediaDevices: true,
+      desktopCaptureContext: context,
+      screenSelectDialogBuilder: _pickerBuilder(),
+    );
+    if (localScreenSharingRenderer.mediaStream == null) {
+      setState(() {
+        screenSharing = false;
+      });
+      await localScreenSharingRenderer.dispose();
+      await screenPlugin?.dispose();
+      screenPlugin = null;
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Screen share cancelled')),
+        );
+      }
+      return;
+    }
     localScreenSharingRenderer.videoRenderer.srcObject = localScreenSharingRenderer.mediaStream;
     localScreenSharingRenderer.publisherName = "Your Screenshare";
     setState(() {
@@ -812,6 +862,32 @@ class _VideoRoomState extends State<GoogleMeet> {
                         await screenShare();
                       }
                     : null),
+            PopupMenuButton<DesktopPickerStyle>(
+              tooltip: 'Screen picker style',
+              icon: const Icon(Icons.tune, color: Colors.green),
+              initialValue: _pickerStyle,
+              onSelected: (DesktopPickerStyle value) {
+                setState(() => _pickerStyle = value);
+                if (!mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Screen picker: ${_pickerStyleLabel(value)}')),
+                );
+              },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<DesktopPickerStyle>>[
+                PopupMenuItem<DesktopPickerStyle>(
+                  value: DesktopPickerStyle.defaultM3,
+                  child: Text(_pickerStyleLabel(DesktopPickerStyle.defaultM3)),
+                ),
+                PopupMenuItem<DesktopPickerStyle>(
+                  value: DesktopPickerStyle.compact,
+                  child: Text(_pickerStyleLabel(DesktopPickerStyle.compact)),
+                ),
+                PopupMenuItem<DesktopPickerStyle>(
+                  value: DesktopPickerStyle.sidebar,
+                  child: Text(_pickerStyleLabel(DesktopPickerStyle.sidebar)),
+                ),
+              ],
+            ),
             IconButton(
                 icon: Icon(
                   audioEnabled ? Icons.mic : Icons.mic_off,
