@@ -10,7 +10,7 @@ environment:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  dartdoc: ^9.0.0 # Downgraded to avoid Dart 3.6.0+ requirement
+  dartdoc: ^9.0.2 # Downgraded to avoid Dart 3.6.0+ requirement
 
 dependencies:
   flutter_web_plugins:

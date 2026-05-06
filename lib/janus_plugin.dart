@@ -997,6 +997,10 @@ class JanusPlugin {
   ///   unified-plan transceivers (e.g. simulcast in video rooms).
   /// - [desktopCaptureContext]: mandatory when [useDisplayMediaDevices] is true
   ///   on macOS, Windows, or Linux so the native dialog can be presented.
+  /// - [screenSelectDialogBuilder]: optional [WidgetBuilder] for the desktop
+  ///   source picker. Defaults to [ScreenSelectDialog]; use
+  ///   [CompactScreenSelectDialog] or [SidebarScreenSelectDialog] for alternate
+  ///   layouts, or supply a custom widget that pops a [DesktopCapturerSource].
   ///
   /// Platform considerations:
   /// - **Android / iOS:** camera capture works out of the box; screen capture
@@ -1004,7 +1008,8 @@ class JanusPlugin {
   ///   [useDisplayMediaDevices] to `true`.
   /// - **Desktop (macOS, Windows, Linux):** provide a valid
   ///   [desktopCaptureContext] to surface `ScreenSelectDialog()` when capturing
-  ///   displays. Camera capture uses automatic device prediction when available.
+  ///   displays (or drop-in variants `CompactScreenSelectDialog` /
+  ///   `SidebarScreenSelectDialog`). Camera capture uses automatic device prediction when available.
   /// - **Web:** screen capture is also supported; the browser prompts the user
   ///   without requiring [desktopCaptureContext].
   ///
@@ -1053,6 +1058,7 @@ class JanusPlugin {
     TransceiverDirection? transceiverDirection = TransceiverDirection.SendOnly,
     List<RTCRtpEncoding>? simulcastSendEncodings,
     BuildContext? desktopCaptureContext,
+    WidgetBuilder? screenSelectDialogBuilder,
   }) async {
     await _disposeMediaStreams(ignoreRemote: true);
     Map<String, dynamic>? constraintsCandidate = mediaConstraints != null ? Map<String, dynamic>.from(mediaConstraints) : null;
@@ -1098,7 +1104,7 @@ class JanusPlugin {
           }
           final source = await showDialog<DesktopCapturerSource>(
             context: desktopCaptureContext,
-            builder: (context) => ScreenSelectDialog(),
+            builder: screenSelectDialogBuilder ?? (BuildContext context) => const ScreenSelectDialog(),
           );
           if (source == null) {
             _context._logger.fine('desktop screen capture cancelled by user');

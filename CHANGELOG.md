@@ -1,3 +1,10 @@
+## 2.4.5
+
+- Added `janus_ws_meetecho` to `conf.dart` for Google Meet example
+- Upgraded flutter_webrtc to version 1.4.1
+- Redesigned desktop capture picker: `ScreenSelectDialog` is now a customizable `StatefulWidget` with `ScreenSelectDialogStyle`, optional region builders, and an extensible `ScreenSelectDialogState` (`buildHeader`, `buildTabs`, `buildBody`, `buildSourceGrid`, `buildThumbnail`, `buildEmpty`, `buildLoading`, `buildActions`). Added `ScreenSelectThumbnail` (deprecated `ThumbnailWidget` wrapper), `CompactScreenSelectDialog`, and `SidebarScreenSelectDialog` as drop-in alternatives. Share is disabled until a source is selected.
+- `JanusPlugin.initializeMediaDevices` accepts optional `screenSelectDialogBuilder` to customize the desktop source picker (defaults to `ScreenSelectDialog`).
+
 ## 2.4.4-dev.1
 - Upgraded to self hosted flutter-webrtc instead of pub.dev
 
@@ -5,7 +12,6 @@
 
 - Fixed REST polling URL construction to preserve the configured transport base path instead of forcing `/janus/{sessionId}`.
 - Added `JanusPlugin.buildPollingUri` and tests to verify custom base paths, trailing slash normalization, and query parameter merging.
-
 ## 2.4.3
 
 - Added `disposeStream` parameter to `hangup` methods across all wrapper plugins (VideoRoom, VideoCall, AudioBridge, SIP) to allow flexible media resource cleanup without necessarily disposing the entire plugin handle.
