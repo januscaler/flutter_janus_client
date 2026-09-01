@@ -169,6 +169,24 @@ class JanusClient {
           : {}
       : {};
 
+  /// The auth token sent with every request.
+  ///
+  /// Replacing it takes effect immediately, because [_tokenMap] is read per
+  /// request rather than cached — so a caller using short-lived signed tokens
+  /// can keep a session alive past the token's expiry instead of rebuilding it.
+  ///
+  /// This matters because Janus validates the token on **every** request,
+  /// `keepalive` included. Once a signed token expires, keepalives start
+  /// failing with `403 Unauthorized request`, Janus stops seeing the session as
+  /// alive and destroys it after `session_timeout`. Without a way to replace
+  /// the token, its TTL is a hard ceiling on session lifetime.
+  ///
+  /// Verified against Janus 1.4.1: the same session that returns 403 with an
+  /// expired token answers `ack` a second later once a fresh token is sent.
+  String? get token => _token;
+
+  set token(String? value) => _token = value;
+
   /// JanusClient
   ///
   /// setting usePlanB forces creation of peer connection with plan-b sdp semantics,
